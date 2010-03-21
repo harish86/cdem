@@ -2,10 +2,10 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: mysql
-  username: root 
+  username: root
   password: root
   database: cdem_development
-  timeout: 5000
+  socket: /var/run//mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,12 +14,12 @@ test:
   adapter: mysql
   username: root 
   password: root
-  database: cdem_development
+  database: cdem_test
   timeout: 5000
 
 production:
   adapter: mysql
   username: root 
   password: root
-  database: cdem_development
+  database: cdem_production
   timeout: 5000
