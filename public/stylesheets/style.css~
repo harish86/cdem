@@ -1,0 +1,16 @@
+body { background-color: #fff; color: #333; }
+body, p, ol, ul, td {
+  font-family: verdana;
+  font-size: 15px;
+  line-height: 20px;
+}
+#loginlogout {
+  background-color: #ccc;
+  padding: 8px;
+  width: 12%;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+
+
