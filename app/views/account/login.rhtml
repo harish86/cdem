@@ -1,14 +1,14 @@
 <% form_tag do -%>
-<p><label for="login">Login</label><br/>
+Login<br/>
 <%= text_field_tag 'login' %></p>
 
-<p><label for="password">Password</label><br/>
+Password<br/>
 <%= password_field_tag 'password' %></p>
 
-<!-- Uncomment this if you want this functionality
-<p><label for="remember_me">Remember me:</label>
+Remember me
 <%= check_box_tag 'remember_me' %></p>
--->
 
-<p><%= submit_tag 'Log in' %></p>
+<p><%= submit_tag 'Log in' %> </p>
+Dont you have account? Then just follow few steps and signup here</br> 
+<%= link_to "Sign up", :controller => "/account", :action => "signup" %></p>
 <% end -%>

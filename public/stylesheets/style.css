@@ -13,4 +13,9 @@ body, p, ol, ul, td {
   right: 10px;
 }
 
+#notice {
+padding: 10px 0px 0px 10px;
+background-color: #96FF88;
+border:1px solid blue;
+}
 

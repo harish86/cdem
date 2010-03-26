@@ -1,15 +1,15 @@
 <%= error_messages_for :user %>
 <% form_for :user do |f| -%>
-Login<br/>
+<p><label for="login">Login</label><br/>
 <%= f.text_field :login %></p>
 
-Email<br/>
+<p><label for="email">Email</label><br/>
 <%= f.text_field :email %></p>
 
-Password<br/>
+<p><label for="password">Password</label><br/>
 <%= f.password_field :password %></p>
 
-Confirm Password<br/>
+<p><label for="password_confirmation">Confirm Password</label><br/>
 <%= f.password_field :password_confirmation %></p>
 
 <p><%= submit_tag 'Sign up' %></p>

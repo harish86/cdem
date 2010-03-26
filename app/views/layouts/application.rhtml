@@ -11,9 +11,9 @@
 <div id="loginlogout">
       <% if logged_in? %>
         Logged in as <%= current_user.login %> (<%= link_to "Logout", :controller => "/account", :action => "logout" %>)
-        <br/>(<%= link_to "Create New account", :controller => "/account", :action => "signup" %>)
+        
         <br/>(<%= link_to "Reset password", :controller => "/account", :action => "reset_password" %>)
       <% else %>
-        <%= link_to "Login", :controller => "/account", :action => "login" %>
+       <center> <%= link_to "Login", :controller => "/account", :action => "login" %></center>
       <% end %>
     </div>
