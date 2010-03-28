@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  conference_id: 1
+  user_id: 1
+  last_read_at: 2010-03-28 17:00:27
+
+two:
+  conference_id: 1
+  user_id: 1
+  last_read_at: 2010-03-28 17:00:27
