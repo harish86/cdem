@@ -1,7 +1,11 @@
-<% if logged_in? %>
-  Logged in as <%= current_user.login %> (<%= link_to "Logout", :controller => "/account", :action => "logout" %>)
-  
-  <br/>(<%= link_to "Reset password", :controller => "/account", :action => "reset_password" %>)
-<% else %>
- <center> <%= link_to "Login", :controller => "/account", :action => "login" %></center>
-<% end %>
+<div id="login_logout_links">
+	<% if logged_in? %>
+	  Logged in as <%= current_user.login %> (<%= link_to "Logout", :controller => "/account", :action => "logout" %>)
+	  
+	  <br/>(<%= link_to "Reset password", :controller => "/account", :action => "reset_password" %>)
+	<% else %>
+	 <center> <%= link_to "Login", :controller => "/account", :action => "login" %></center>
+	<% end %>
+</div>
+
+<div class="clear-height"></div>

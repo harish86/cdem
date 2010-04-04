@@ -2,6 +2,10 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
+  
+  has_many :contacts
+  has_many :friends, :through=>:contacts, :class_name=>"User", :foreign_key=>"contact_id"
+  
 
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
@@ -58,7 +62,46 @@ class User < ActiveRecord::Base
   def reset_password
     update_attributes(:password_reset_code => nil)
   end
+  
+  #---------------------------------Custom Methods --------------------------------
+  def is_online?
+#    self.last_access_time >= 5.minutes.ago
+  end
+  
+  def is_friend?(friend_id)
+    contact = self.contacts.find_by_friend_id(friend_id)
+    if contact.nil?
+      return 0
+    else
+      if contact.pending?
+        return 1
+      else
+        return 2
+      end
+    end
+  end
 
+  def add_friend(friend_id)
+    if friend_id != self.id
+      if self.is_friend?(friend_id) == 0
+        friend = User.find(friend_id)
+        contact = self.contacts.new
+        contact.friend = friend
+        contact.save
+      end
+      
+      if friend.is_friend?(self.id) == 0
+        contact = friend.contacts.new
+        contact.friend = self
+        contact.save
+      end
+    end
+  end
+  
+  def friendship_status_message(friend_id)
+    Contact.status_message[self.is_friend?(friend_id)]
+  end
+  #-----------------------------------------------------------------
 
   protected
     def create_pw_reset_code

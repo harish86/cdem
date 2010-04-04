@@ -9,41 +9,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100328113201) do
+ActiveRecord::Schema.define(:version => 20100403063051) do
 
   create_table "conference_users", :force => true do |t|
-    t.integer  "conference_id", :limit => 11
-    t.integer  "user_id",       :limit => 11
+    t.integer  "conference_id"
+    t.integer  "user_id"
     t.datetime "last_read_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "conferences", :force => true do |t|
-    t.integer  "initiator_id", :limit => 11
+    t.integer  "initiator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "contacts", :force => true do |t|
-    t.integer  "user_id",    :limit => 11
-    t.integer  "contact_id", :limit => 11
+    t.integer  "user_id"
+    t.integer  "friend_id"
     t.boolean  "initiator"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "text",          :limit => 1000
-    t.integer  "sender_id",     :limit => 11
-    t.integer  "conference_id", :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text     "text"
+    t.integer  "sender_id",     :null => false
+    t.integer  "conference_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "user_parameters", :force => true do |t|
-    t.integer  "user_id",    :limit => 11
-    t.integer  "status",     :limit => 11
+    t.integer  "user_id"
+    t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

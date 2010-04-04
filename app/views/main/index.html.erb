@@ -1,2 +1,22 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<%= link_to "Find Friends", :controller=>"users", :action=>"search" %>
+
+<br />
+<br />
+
+<% if current_user.friends.any? %>
+	<%= current_user.friends.size %> friends in contacts list <br />
+	<table>
+		<tr>
+			<th>Login</th>
+			<th>Email</th>
+		</tr>
+		<% for user in current_user.friends %>
+			<tr>
+				<td><%= user.login %></td>
+				<td><%= user.email %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No match found.
+<% end %>
