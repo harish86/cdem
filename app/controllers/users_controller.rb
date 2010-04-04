@@ -11,4 +11,11 @@ class UsersController < ApplicationController
     
     redirect_to :controller=>"main", :action=>"index"
   end
+  
+  def accept_contact
+    contact = current_user.contacts.find_by_id(params[:contact_id])
+    contact.accept
+    
+    redirect_to :controller=>"main", :action=>"index"
+  end
 end

@@ -10,10 +10,21 @@
 			<th>Login</th>
 			<th>Email</th>
 		</tr>
-		<% for user in current_user.friends %>
+		<% for contact in current_user.contacts.find(:all, :order=>"status asc, initiator asc, created_at asc") %>
 			<tr>
-				<td><%= user.login %></td>
-				<td><%= user.email %></td>
+				<td><%= contact.friend.login %></td>
+				<td><%= contact.friend.email %></td>
+				<td>
+					<% if contact.pending? %>
+						<% if contact.initiator %>
+							You have requested
+						<% else %>
+							<%= link_to "Accept this contact", :controller=>"users", :action=>"accept_contact", :contact_id=>contact.id %>
+						<% end %>
+					<% else %>
+						Accepted
+					<% end %>
+				</td>
 			</tr>
 		<% end %>
 	</table>

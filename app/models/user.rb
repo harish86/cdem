@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   
   has_many :contacts
   has_many :friends, :through=>:contacts, :class_name=>"User", :foreign_key=>"contact_id"
+  has_one :user_parameter
   
 
   validates_presence_of     :login, :email
@@ -80,18 +81,22 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  
 
   def add_friend(friend_id)
     if friend_id != self.id
       if self.is_friend?(friend_id) == 0
         friend = User.find(friend_id)
         contact = self.contacts.new
+        contact.initiator = true
         contact.friend = friend
         contact.save
       end
       
       if friend.is_friend?(self.id) == 0
         contact = friend.contacts.new
+        contact.initiator = false
         contact.friend = self
         contact.save
       end
