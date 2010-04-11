@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100403074204) do
+ActiveRecord::Schema.define(:version => 20100411164250) do
 
   create_table "conference_users", :force => true do |t|
     t.integer  "conference_id"
@@ -17,12 +17,17 @@ ActiveRecord::Schema.define(:version => 20100403074204) do
     t.datetime "last_read_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recomender_id"
+    t.boolean  "status",        :default => false
+    t.datetime "terminated_at"
+    t.integer  "terminator_id"
   end
 
   create_table "conferences", :force => true do |t|
     t.integer  "initiator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "contacts", :force => true do |t|
@@ -59,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100403074204) do
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "pw_reset_code",             :limit => 40
+    t.datetime "last_access_time"
   end
 
 end

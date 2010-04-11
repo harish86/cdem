@@ -2,6 +2,9 @@ class Contact < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, :class_name=>"User", :foreign_key=>"friend_id"
   
+  named_scope :find_all_accepted, :conditions=>["status = 1"]
+  named_scope :find_all_pending, :conditions=>["status = 0"]
+  
   def self.status_message
     ["not a friend", "pending", "accepted"]
   end

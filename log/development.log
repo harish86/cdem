@@ -524,3 +524,312 @@ ActionController::RoutingError (No route matches "/javascripts/jrails.js" with {
   
 
 Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mContact Load (0.2ms)[0m   [0mSELECT * FROM `contacts` WHERE (status = 1) [0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUser Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mContact Load (0.4ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 1) AND ((status = 1) AND (`contacts`.user_id = 1)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MainController#index (for 127.0.0.1 at 2010-04-11 20:58:28) [GET]
+Redirected to http://localhost:5000/account/login
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountController#login (for 127.0.0.1 at 2010-04-11 20:58:28) [GET]
+Rendering template within layouts/application
+Rendering account/login
+Rendered shared/_stylesheet_includes (1.0ms)
+Rendered shared/_header (1.3ms)
+Rendered shared/_javascript_includes (2.3ms)
+Completed in 49ms (View: 46, DB: 0) | 200 OK [http://localhost/account/login]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountController#login (for 127.0.0.1 at 2010-04-11 20:58:36) [POST]
+  Parameters: {"commit"=>"Log in", "authenticity_token"=>"5C0Sr6rOcXLtY6OelFcwGJ6trJL5q2ufFYx2f7DYwe4=", "login"=>"abhishek", "password"=>"test123"}
+  [4;35;1mUser Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`login` = 'abhishek') LIMIT 1[0m
+Redirected to http://localhost:5000/
+Completed in 29ms (DB: 1) | 302 Found [http://localhost/account/login]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MainController#index (for 127.0.0.1 at 2010-04-11 20:58:36) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering main/index
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 2)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 2)) [0m
+  [4;36;1mContact Load (0.2ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 2) ORDER BY status asc, initiator asc, created_at asc[0m
+  [4;35;1mContact Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `contacts`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered shared/_stylesheet_includes (0.5ms)
+Rendered shared/_header (0.8ms)
+Rendered shared/_javascript_includes (1.8ms)
+Completed in 41ms (View: 24, DB: 2) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#accept_contact (for 127.0.0.1 at 2010-04-11 20:58:44) [GET]
+  Parameters: {"contact_id"=>"2"}
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mContact Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `contacts`[0m
+  [4;35;1mContact Load (33.3ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.`id` = '2') AND (`contacts`.user_id = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mContact Update (0.3ms)[0m   [0mUPDATE `contacts` SET `updated_at` = '2010-04-11 15:28:44', `status` = 1 WHERE `id` = 2[0m
+  [4;36;1mSQL (4.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mContact Load (0.4ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.`user_id` = 1 AND `contacts`.`friend_id` = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mContact Update (0.3ms)[0m   [0mUPDATE `contacts` SET `updated_at` = '2010-04-11 15:28:44', `status` = 1 WHERE `id` = 1[0m
+  [4;36;1mSQL (9.8ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:5000/
+Completed in 89ms (DB: 51) | 302 Found [http://localhost/users/accept_contact?contact_id=2]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MainController#index (for 127.0.0.1 at 2010-04-11 20:58:44) [GET]
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering main/index
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 2)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 2)) [0m
+  [4;36;1mContact Load (0.4ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 2) ORDER BY status asc, initiator asc, created_at asc[0m
+  [4;35;1mContact Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `contacts`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered shared/_stylesheet_includes (0.7ms)
+Rendered shared/_header (1.2ms)
+Rendered shared/_javascript_includes (3.1ms)
+Completed in 46ms (View: 25, DB: 3) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MainController#index (for 127.0.0.1 at 2010-04-11 20:58:48) [GET]
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering main/index
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 1)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 1)) [0m
+  [4;36;1mContact Load (0.3ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 1) ORDER BY status asc, initiator asc, created_at asc[0m
+  [4;35;1mContact Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `contacts`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) [0m
+Rendered shared/_stylesheet_includes (0.7ms)
+Rendered shared/_header (1.1ms)
+Rendered shared/_javascript_includes (3.1ms)
+Completed in 46ms (View: 25, DB: 3) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` LIMIT 1[0m
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mContact Load (0.4ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 1) AND ((status = 1) AND (`contacts`.user_id = 1)) [0m
+  [4;36;1mContact Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `contacts`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` LIMIT 1[0m
+  [4;36;1mContact Load (0.6ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 1) AND ((status = 1) AND (`contacts`.user_id = 1)) LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mContact Load (0.1ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 1) AND ((status = 1) AND (`contacts`.user_id = 1)) LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MainController#index (for 127.0.0.1 at 2010-04-11 21:04:03) [GET]
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering main/index
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 1)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` INNER JOIN `contacts` ON `users`.id = `contacts`.friend_id WHERE ((`contacts`.user_id = 1)) [0m
+  [4;36;1mContact Load (0.1ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.user_id = 1) ORDER BY status asc, initiator asc, created_at asc[0m
+  [4;35;1mContact Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `contacts`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) [0m
+Rendered shared/_stylesheet_includes (0.5ms)
+Rendered shared/_header (0.7ms)
+Rendered shared/_javascript_includes (1.8ms)
+Completed in 108ms (View: 96, DB: 2) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` LIMIT 1[0m
+  [4;36;1mUser Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUserParameter Load (0.4ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUserParameter Load (0.1ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUserParameter Load (0.1ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUserParameter Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `user_parameters`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUserParameter Create (0.9ms)[0m   [0mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 15:51:07', '2010-04-11 15:51:07', NULL, NULL)[0m
+  [4;36;1mSQL (7.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUserParameter Create (0.2ms)[0m   [0mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 15:51:26', '2010-04-11 15:51:26', NULL, NULL)[0m
+  [4;36;1mSQL (151.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` LIMIT 1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUserParameter Load (0.4ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` LIMIT 1[0m
+  [4;36;1mUserParameter Load (1.3ms)[0m   [0;1mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUserParameter Create (0.8ms)[0m   [0;1mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 15:55:14', '2010-04-11 15:55:14', 1, NULL)[0m
+  [4;35;1mSQL (8433.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUserParameter Load (0.3ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m
+  [4;35;1mUserParameter Load (0.1ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 1) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUserParameter Update (0.4ms)[0m   [0mUPDATE `user_parameters` SET `updated_at` = '2010-04-11 15:56:11', `user_id` = NULL WHERE `id` = 3[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUserParameter Create (0.3ms)[0m   [0;1mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 15:56:11', '2010-04-11 15:56:11', 1, NULL)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUserParameter Load (0.4ms)[0m   [0;1mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 2) LIMIT 1[0m
+  [4;35;1mUserParameter Load (0.1ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUserParameter Create (0.3ms)[0m   [0mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 15:57:16', '2010-04-11 15:57:16', 2, NULL)[0m
+  [4;36;1mSQL (4.5ms)[0m   [0;1mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUserParameter Load (0.4ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 2) LIMIT 1[0m
+  [4;36;1mUserParameter Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `user_parameters`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUser Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUser Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUserParameter Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `user_parameters`[0m
+  [4;36;1mUserParameter Load (0.4ms)[0m   [0;1mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUserParameter Create (0.3ms)[0m   [0;1mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 16:01:42', '2010-04-11 16:01:42', 3, NULL)[0m
+  [4;35;1mSQL (79.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mUserParameter Load (0.4ms)[0m   [0;1mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUserParameter Update (0.5ms)[0m   [0;1mUPDATE `user_parameters` SET `updated_at` = '2010-04-11 16:01:48', `user_id` = NULL WHERE `id` = 6[0m
+  [4;35;1mSQL (533.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUserParameter Create (0.2ms)[0m   [0mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 16:01:49', '2010-04-11 16:01:49', 3, NULL)[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUserParameter Load (0.4ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 2) LIMIT 1[0m
+  [4;36;1mUserParameter Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `user_parameters`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUserParameter Load (0.6ms)[0m   [0;1mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUserParameter Load (0.9ms)[0m   [0;1mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` [0m
+  [4;36;1mUser Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUserParameter Load (0.1ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 4) LIMIT 1[0m
+  [4;36;1mUserParameter Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `user_parameters`[0m
+  [4;35;1mUserParameter Load (0.6ms)[0m   [0mSELECT * FROM `user_parameters` WHERE (`user_parameters`.user_id = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUserParameter Create (0.6ms)[0m   [0mINSERT INTO `user_parameters` (`created_at`, `updated_at`, `user_id`, `status`) VALUES('2010-04-11 16:04:19', '2010-04-11 16:04:19', 4, NULL)[0m
+  [4;36;1mSQL (4.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUserParameter Load (0.4ms)[0m   [0mSELECT * FROM `user_parameters` [0m
+  [4;36;1mUserParameter Load (0.4ms)[0m   [0;1mSELECT * FROM `user_parameters` [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#search (for 127.0.0.1 at 2010-04-11 22:10:40) [GET]
+  [4;36;1mUser Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering users/search
+Rendered users/_search_form (4.6ms)
+Rendered shared/_stylesheet_includes (0.7ms)
+Rendered shared/_header (4.2ms)
+Rendered shared/_javascript_includes (3.2ms)
+Completed in 107ms (View: 45, DB: 2) | 200 OK [http://localhost/users/search]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#search (for 127.0.0.1 at 2010-04-11 22:10:42) [POST]
+  Parameters: {"search_string"=>"", "commit"=>"Search", "method"=>"get", "authenticity_token"=>"FRqD1UGa+xxrO7WohK8AJr21tsbhQ5JxUnKgCI6YVLs="}
+  [4;35;1mUser Columns (4.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (not id = 1 and (login like '%%' or email like '%%')) [0m
+Rendering template within layouts/application
+Rendering users/search
+Rendered users/_search_form (3.0ms)
+  [4;36;1mContact Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `contacts`[0m
+  [4;35;1mContact Load (0.4ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.`friend_id` = 2) AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.`friend_id` = 2) AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;35;1mContact Load (0.4ms)[0m   [0mSELECT * FROM `contacts` WHERE (`contacts`.`friend_id` = 3) AND (`contacts`.user_id = 1) LIMIT 1[0m
+  [4;36;1mContact Load (0.3ms)[0m   [0;1mSELECT * FROM `contacts` WHERE (`contacts`.`friend_id` = 4) AND (`contacts`.user_id = 1) LIMIT 1[0m
+Rendered shared/_stylesheet_includes (0.7ms)
+Rendered shared/_header (1.1ms)
+Rendered shared/_javascript_includes (3.1ms)
+Completed in 67ms (View: 30, DB: 7) | 200 OK [http://localhost/users/search?method=get]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100322071656)
+Migrating to AddPwResetCodeToUsers (20100322104744)
+Migrating to CreateContacts (20100328112731)
+Migrating to CreateUserParameters (20100328112837)
+Migrating to CreateConferences (20100328113000)
+Migrating to CreateConferenceUsers (20100328113027)
+Migrating to CreateMessages (20100328113201)
+Migrating to ChangeContactIdToFriendIdOfContacts (20100403063051)
+Migrating to AddStatusToContacts (20100403074204)
+Migrating to AddLastAccessTimeToUsers (20100404105610)
+  [4;35;1mSQL (51.7ms)[0m   [0mALTER TABLE `users` ADD `last_access_time` datetime[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100404105610')[0m
+Migrating to AddColumnsToConferenceUsersAndConferences (20100411164250)
+  [4;35;1mSQL (104.1ms)[0m   [0mALTER TABLE `conference_users` ADD `recomender_id` int(11)[0m
+  [4;36;1mSQL (208.2ms)[0m   [0;1mALTER TABLE `conference_users` ADD `status` tinyint(1) DEFAULT 0[0m
+  [4;35;1mSQL (73.8ms)[0m   [0mALTER TABLE `conference_users` ADD `terminated_at` datetime[0m
+  [4;36;1mSQL (271.6ms)[0m   [0;1mALTER TABLE `conference_users` ADD `terminator_id` int(11)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100322071656)
+Migrating to AddPwResetCodeToUsers (20100322104744)
+Migrating to CreateContacts (20100328112731)
+Migrating to CreateUserParameters (20100328112837)
+Migrating to CreateConferences (20100328113000)
+Migrating to CreateConferenceUsers (20100328113027)
+Migrating to CreateMessages (20100328113201)
+Migrating to ChangeContactIdToFriendIdOfContacts (20100403063051)
+Migrating to AddStatusToContacts (20100403074204)
+Migrating to AddLastAccessTimeToUsers (20100404105610)
+Migrating to AddColumnsToConferenceUsersAndConferences (20100411164250)
+  [4;35;1mSQL (207.8ms)[0m   [0mALTER TABLE `conferences` ADD `title` varchar(255)[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100411164250')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `conference_users`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `conference_users`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW KEYS FROM `conference_users`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `conferences`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `conferences`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `conferences`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `contacts`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `contacts`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `contacts`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `messages`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `messages`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `messages`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `user_parameters`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `user_parameters`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `user_parameters`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `users`[0m

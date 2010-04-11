@@ -5,9 +5,8 @@ class User < ActiveRecord::Base
   
   has_many :contacts
   has_many :friends, :through=>:contacts, :class_name=>"User", :foreign_key=>"contact_id"
-  has_one :user_parameter
+  has_one :parameter, :class_name=>"UserParameter", :foreign_key=>"user_id", :dependent=>:destroy
   
-
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
@@ -16,7 +15,21 @@ class User < ActiveRecord::Base
   validates_length_of       :login,    :within => 3..40
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
+  
   before_save :encrypt_password
+  after_save :create_parameter
+  
+  def create_parameter
+    unless self.parameter
+      self.parameter = UserParameter.new
+    end
+  end
+  
+  def parameter!
+    create_parameter unless self.parameter
+    
+    self.parameter
+  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -82,8 +95,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  
-
   def add_friend(friend_id)
     if friend_id != self.id
       if self.is_friend?(friend_id) == 0
