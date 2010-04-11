@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100404105610) do
+ActiveRecord::Schema.define(:version => 20100403074204) do
 
   create_table "conference_users", :force => true do |t|
     t.integer  "conference_id"
@@ -35,16 +35,16 @@ ActiveRecord::Schema.define(:version => 20100404105610) do
   end
 
   create_table "messages", :force => true do |t|
-    t.text     "text"
-    t.integer  "sender_id",     :null => false
-    t.integer  "conference_id", :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "text",          :limit => 1000
+    t.integer  "sender_id"
+    t.integer  "conference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_parameters", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "status"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(:version => 20100404105610) do
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "pw_reset_code",             :limit => 40
-    t.datetime "last_access_time"
   end
 
 end
