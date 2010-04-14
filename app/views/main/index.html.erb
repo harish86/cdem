@@ -12,7 +12,7 @@
 		</tr>
 		<% for contact in current_user.contacts.find(:all, :order=>"status asc, initiator asc, created_at asc") %>
 			<tr>
-				<td><%= contact.friend.login %></td>
+				<td><%= link_to_function contact.friend.login, "window.open('#{new_conference_path(:contact_id=>contact.id)}', 'contact_#{contact.id}', 'status=1,location=1,width=350,height=500');" %></td>
 				<td><%= contact.friend.email %></td>
 				<td>
 					<% if contact.pending? %>

@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_many :friends, :through=>:contacts, :class_name=>"User", :foreign_key=>"contact_id"
   has_one :parameter, :class_name=>"UserParameter", :foreign_key=>"user_id", :dependent=>:destroy
+  has_many :initiated_conferences, :class_name=>"Conference", :foreign_key=>"initiator_id", :dependent=>:destroy
+  has_many :conference_users, :dependent=>:destroy
+  has_many :conferences, :through=>:conference_users
   
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?

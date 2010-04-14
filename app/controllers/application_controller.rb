@@ -13,4 +13,14 @@ class ApplicationController < ActionController::Base
       #current_user.update_attribute(:last_access_time, Time.now)
     end
   end
+  
+  protected
+  def allow_access
+    return true
+  end
+  
+  def deny_access
+    redirect_to access_denied_path
+    return false
+  end
 end

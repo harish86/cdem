@@ -40,16 +40,16 @@ ActiveRecord::Schema.define(:version => 20100411164250) do
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "text",          :limit => 1000
-    t.integer  "sender_id"
-    t.integer  "conference_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text     "text"
+    t.integer  "sender_id",     :null => false
+    t.integer  "conference_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "user_parameters", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "status"
+    t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,7 +3,7 @@
 development:
   adapter: mysql
   username: root
-  password: 
+  password: root
   database: cdem_development
 
 # Warning: The database defined as "test" will be erased and
