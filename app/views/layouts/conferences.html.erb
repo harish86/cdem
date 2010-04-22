@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title><%= @page_title || 'Chatting' %></title>
+    <%= render :partial=>"shared/stylesheet_includes" %>
+  </head>
+  <body>
+  
+    <div id="layout-head">
+    </div>
+    
+    <div id="layout-body">
+      <div id="page-header">
+      </div>
+      
+      <div id="page-body">
+        <%= "<h1>#{@page_title}</h1>" if @page_title %>
+        
+        <% if flash[:notice] %>
+          <div id="flash-notice">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        
+        <div id="page-content">
+          <%= yield %>
+        </div>
+      </div>
+      
+      <div id="page-footer">
+      </div>
+    </div>
+    
+    <div id="layout-footer">
+    </div>
+    
+    <div id="javascript-includes">
+	    <%= render :partial=>"shared/javascript_includes" %>
+    </div>
+  </body>
+</html>

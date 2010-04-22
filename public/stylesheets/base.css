@@ -1,4 +1,5 @@
-.clear-height
+*
 {
-    clear:both;
+  font-family:Helvetica;
+  text-decoration: none;
 }

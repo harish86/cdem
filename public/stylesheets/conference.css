@@ -1,0 +1,30 @@
+#chat-table
+{
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: black;
+}
+
+#chat-table td
+{
+  text-align: left;
+  vertical-align: top;
+}
+
+#chat-table #messages-list
+{
+}
+
+#chat-table #message-input
+{
+  background-color:lavender;
+  border-top:2px solid lightgrey;
+  height:50px;
+}
+
+#chat-table #message-input textarea
+{
+  width: 100%;
+}

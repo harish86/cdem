@@ -27,8 +27,7 @@ class ConferencesController < ApplicationController
   def show
     @conference = Conference.find(params[:id])
     @messages = @conference.messages
-    
-    render :layout=>false
+    @message = @conference.messages.new
   end
   
   protected

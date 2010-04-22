@@ -31,10 +31,12 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
+  map.root :controller => "main", :action=>"index"
   
-  map.resources :conferences
-  map.access_denied "/access_denied", :controller=>"main", :action=>"access_denied"
-   map.root :controller => "main", :action=>"index"
+  map.resources :conferences do |conference|
+    conference.resources :messages
+  end
+  map.unauthorized "/unauthorized", :controller=>"main", :action=>"unauthorized"
 
   # See how all your routes lay out with "rake routes"
 

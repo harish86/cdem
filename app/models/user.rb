@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :initiated_conferences, :class_name=>"Conference", :foreign_key=>"initiator_id", :dependent=>:destroy
   has_many :conference_users, :dependent=>:destroy
   has_many :conferences, :through=>:conference_users
+  has_many :sent_messages, :class_name=>"Message", :foreign_key=>"sender_id", :dependent=>:destroy
   
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?

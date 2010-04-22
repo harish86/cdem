@@ -1,1 +1,20 @@
-Show
+<table id="chat-table">
+	<tr>
+		<td id="messages-list">
+			<div id="conference-messages-<%= @conference.id %>">
+				<%= render :partial=>"messages_list" %>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td id="message-input">
+			<div id="conference-message-sender-<%= @conference.id %>">
+				<%= render :partial=>"message_input", :locals=>{:message=>@message, :conference=>@conference} %>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<% content_for :javascripts do %>
+	confernece = new Coference({messageList: 'conference-messages-<%= @conference.id %>', messageSender: 'conference-message-sender-<%= @conference.id %>'});
+<% end %>

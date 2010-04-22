@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
   
   def deny_access
-    redirect_to access_denied_path
+    redirect_to unauthorized_path
     return false
   end
 end
