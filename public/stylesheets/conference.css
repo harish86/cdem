@@ -17,6 +17,18 @@
 {
 }
 
+#chat-table #messages-list .conference-messages-outer
+{
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+#chat-table #messages-list .conference-messages-container
+{
+  position: absolute;
+}
+
 #chat-table #message-input
 {
   background-color:lavender;

@@ -1,8 +1,10 @@
 <table id="chat-table">
 	<tr>
 		<td id="messages-list">
-			<div id="conference-messages-<%= @conference.id %>">
-				<%= render :partial=>"messages_list" %>
+			<div class='conference-messages-outer'>
+				<div id="conference-messages-<%= @conference.id %>" class='conference-messages-container'>
+					<%= render :partial=>"messages_list" %>
+				</div>
 			</div>
 		</td>
 	</tr>
@@ -16,5 +18,18 @@
 </table>
 
 <% content_for :javascripts do %>
-	confernece = new Coference({messageList: 'conference-messages-<%= @conference.id %>', messageSender: 'conference-message-sender-<%= @conference.id %>'});
+	var authenticityToken = <%= form_authenticity_token.inspect %>;
+	conference = new Conference({
+			messageList: 'conference-messages-<%= @conference.id %>',
+			messageSender: 'conference-message-sender-<%= @conference.id %>',
+			messageDeliverUrl: '<%= conference_messages_path(@conference) %>',
+			userId: <%= current_user.id %>
+		});
+		
+	<% for user in @conference.users %>
+		conference.users[conference.users.length] = new User({
+				id: <%= user.id %>,
+				name: '<%= user.login %>'
+			});
+	<% end %>
 <% end %>
