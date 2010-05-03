@@ -9,10 +9,15 @@
 		<tr>
 			<th>Login</th>
 			<th>Email</th>
+			<th>Friendship status</th>
+			<th>Availability status</th>
 		</tr>
 		<% for contact in current_user.contacts.find(:all, :order=>"status asc, initiator asc, created_at asc") %>
 			<tr>
-				<td><%= link_to_function contact.friend.login, "window.open('#{new_conference_path(:contact_id=>contact.id)}', 'contact_#{contact.id}', 'status=1,location=1,width=350,height=500');" %></td>
+				<script>
+					var userWindow<%= contact.id %> = null;
+				</script>
+				<td><%= link_to_function contact.friend.login, "if(!userWindow#{contact.id}) userWindow#{contact.id} = window.open('#{new_conference_path(:contact_id=>contact.id)}', 'contact_#{contact.id}', 'status=1,location=1,width=350,height=500'); else { userWindow#{contact.id}.focus(); userWindow#{contact.id}.conference.messageSender.setFocus();}" %></td>
 				<td><%= contact.friend.email %></td>
 				<td>
 					<% if contact.pending? %>
@@ -25,9 +30,26 @@
 						Accepted
 					<% end %>
 				</td>
+				<td>
+					<%= contact.friend.is_online? ? "Online" : "Offline" %>
+				</td>
 			</tr>
 		<% end %>
 	</table>
 <% else %>
 	No match found.
+<% end %>
+
+<h4>Friends available for chat</h4>
+
+<div id="contacts-list">
+</div>
+
+<% content_for :javascripts do %>
+	var authenticityToken = <%= form_authenticity_token.inspect %>;
+	contactList = new ContactList({
+			container: 'contacts-list',
+			contactsFetchUrl: '<%= contact_list_user_path(current_user) %>',
+			conferenceUrl: '<%= new_conference_path %>'
+		});
 <% end %>

@@ -97,7 +97,11 @@ var MessageSender = Class.create({
   },
   
   setUp: function() {
-    this.input.observe("keypress", this.keyPress.bindAsEventListener(this))
+    this.input.observe("keypress", this.keyPress.bindAsEventListener(this));
+  },
+  
+  setFocus: function() {
+    this.input.focus();
   },
   
   keyPress: function(event) {
@@ -164,5 +168,9 @@ var Conference = Class.create({
         return user;
     }
     return false;
+  },
+  
+  setFocus: function() {
+    this.messageSender.setFocus();
   }
 });

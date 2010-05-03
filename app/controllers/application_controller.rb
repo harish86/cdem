@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   def set_access_time
     if logged_in?
-      #current_user.update_attribute(:last_access_time, Time.now)
+      current_user.update_attribute(:last_access_time, Time.now)
     end
   end
   

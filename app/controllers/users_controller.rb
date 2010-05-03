@@ -18,4 +18,20 @@ class UsersController < ApplicationController
     
     redirect_to :controller=>"main", :action=>"index"
   end
+  
+  def contact_list
+    user = User.find(params[:id])
+    json_response = { :contacts => []}
+    
+    for contact in user.contacts.find_all_accepted.find(:all, :order=>"status asc, initiator asc, created_at asc")
+      json_response[:contacts] << {
+        :id               =>  contact.id,
+        :name             =>  contact.friend.login,
+        :email            =>  contact.friend.email,
+        :onlineStatus     =>  contact.friend.is_online? ? 'Online' : 'Offline'
+      }
+    end
+    
+    render :json => json_response.to_json
+  end
 end

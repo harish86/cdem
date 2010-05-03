@@ -81,9 +81,10 @@ class User < ActiveRecord::Base
     update_attributes(:password_reset_code => nil)
   end
   
-  #---------------------------------Custom Methods --------------------------------
+  #--------------------------------- Custom Methods --------------------------------
   def is_online?
-#    self.last_access_time >= 5.minutes.ago
+    return false if self.last_access_time.nil?
+    self.last_access_time >= 5.seconds.ago
   end
   
   def is_friend?(friend_id)
