@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+  
   def search
     if params[:search_string]
       search_string = '%' + params[:search_string] + '%'
@@ -28,7 +30,8 @@ class UsersController < ApplicationController
         :id               =>  contact.id,
         :name             =>  contact.friend.login,
         :email            =>  contact.friend.email,
-        :onlineStatus     =>  contact.friend.is_online? ? 'Online' : 'Offline'
+        :onlineStatus     =>  contact.friend.is_online? ? 'Online' : 'Offline',
+        :htmlString       =>  contact_to_html(contact)
       }
     end
     

@@ -1,0 +1,13 @@
+<% for message in messages %>
+	<div id='message-block-<%= message.id %>' class="message-block">
+		<span class="message-sender">
+			<% if message.sender == current_user %>
+				Me:
+			<% else %>
+				<%= message.sender.name + ":" %>
+			<% end %>
+		</span>
+		
+		<%= message.text %>
+	</div>
+<% end %>

@@ -1,0 +1,60 @@
+.conference-notifier
+{
+  float: right;
+  border: 1px solid black;
+  border-bottom: 0px;
+  width: 150px;
+  margin-left: 5px;
+}
+
+.conference-notifier:hover
+{
+  border: 1px solid orange;
+  border-bottom: 0px;
+}
+
+.conference-notifier .conference-notifier-header
+{
+  background-color: dodgerblue;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.conference-notifier .conference-notifier-close
+{
+  cursor: pointer;
+  float: right;
+}
+
+.conference-notifier .conference-notifier-close:hover
+{
+  text-decoration: underline;
+}
+
+.conference-notifier .conference-notifier-body
+{
+  background-color: aliceblue;
+  font-size: 10px;
+  height: 100px;
+  padding: 3px;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+.conference-notifier .conference-notifier-message
+{
+  margin-bottom: 5px;
+}
+
+.conference-notifier .conference-notifier-message-sender
+{
+  text-align: right;
+  color: gray;
+  font-weight: bold;
+}
+
+.conference-notifier .conference-notifier-message-sent-at
+{
+  display: none;
+}

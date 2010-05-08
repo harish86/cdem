@@ -4,8 +4,8 @@ var Contact = Class.create({
     this.name = options.name;
     this.email = options.email;
     this.onlineStatus = options.onlineStatus;
-    //this.friendshipStatus = options.friendshipStatus;
     this.conferenceUrl = options.conferenceUrl;
+    this.htmlString = options.htmlString;
     this.conferenceWindow = null;
   },
   
@@ -13,7 +13,7 @@ var Contact = Class.create({
     this.name = options.name;
     this.email = options.email;
     this.onlineStatus = options.onlineStatus;
-    //this.friendshipStatus = options.friendshipStatus;
+    this.htmlString = options.htmlString;
   },
   
   isOnline: function() {
@@ -45,24 +45,16 @@ var Contact = Class.create({
     return " contact contact-hover contact-" + this.onlineStatus;
   },
   
-  innerHtml: function() {
-    var html = "<span class='contact-online-status'>" + this.onlineStatusIndicator() + "</span>";
-    html += "<span class='contact-name'>" + this.name + "</span>";
-    //html += "<span class='contact-friendship-status'>" + this.friendshipStatus + "</span>";
-    
-    return html;
-  },
-  
   toHtml: function() {
     var html = "<div id='" + this.htmlId() + "' class='" + this.htmlClassName() + "'>";
-    html += this.innerHtml();
+    html += this.htmlString;
     html += "</div>"
     
     return html;
   },
   
   updateHtml: function() {
-    this.getHtmlElement().innerHTML = this.innerHtml();
+    this.getHtmlElement().innerHTML = this.htmlString;
     this.getHtmlElement().className = this.htmlClassName();
   },
   
@@ -114,7 +106,6 @@ var ContactList = Class.create({
   parseResponse: function(response) {
     var json = response.responseJSON;
     
-    this.contacts = new Hash;
     for(var i=0; i < json.contacts.length; i++) {
       this.addContact(json.contacts[i]);
     }

@@ -1,44 +1,3 @@
-function inspect(event) {
-  var s = '';
-  for(var i in event)
-  {
-    s += i + "; ";
-  }
-  alert(s);
-}
-
-function objectToParams(parameters) {
-  var params = seperator = "";
-  
-  for(parameter in parameters) {
-    params += seperator + parameter + "=" + encodeURIComponent(parameters[parameter]);
-    seperator = "&";
-  }
-  
-  return params;
-}
-
-function sendRequest(url, parameters, responseParser) {
-  if(authenticityToken)
-    parameters.authenticity_token = authenticityToken;
-  
-  new Ajax.Request(url, {
-                          asynchronous: true,
-                          evalScripts: true,
-                          parameters: objectToParams(parameters),
-                          onComplete: function(response){
-                            responseParser(response);
-                          }
-                  });
-}
-
-var User = Class.create({
-  initialize: function(options) {
-    this.id = options.id;
-    this.name = options.name;
-  }
-})
-
 var Message = Class.create({
   initialize: function(options) {
     this.id = options.id;
@@ -47,7 +6,7 @@ var Message = Class.create({
   },
   
   textHtml: function() {
-    return this.text.gsub(' ', '&nbsp;').gsub('\n', '<br />');
+    return this.text.gsub('\n', '<br />');
   },
   
   senderHtml: function() {
@@ -151,14 +110,16 @@ var MessageList = Class.create({
 
 var Conference = Class.create({
   initialize: function(options) {
+    this.id = options.id;
     this.users = new Array;
     this.messageSender = new MessageSender({ container:document.getElementById(options.messageSender), messageDeliverUrl:options.messageDeliverUrl, conference:this, senderId:options.userId });
     this.messageList = new MessageList({ container:document.getElementById(options.messageList), messageFetchUrl:options.messageFetchUrl, rconference:this });
+    
+    document.observe('dom:loaded', this.setFocus.bind(this));
   },
   
   responseParser: function(response) {
     var json = response.responseJSON;
-    //inspect(json);
   },
 
   getUserById: function(userId) {
@@ -172,5 +133,8 @@ var Conference = Class.create({
   
   setFocus: function() {
     this.messageSender.setFocus();
+  },
+  
+  update: function(updates) {
   }
 });

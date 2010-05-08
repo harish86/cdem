@@ -47,9 +47,16 @@
 
 <% content_for :javascripts do %>
 	var authenticityToken = <%= form_authenticity_token.inspect %>;
-	contactList = new ContactList({
-			container: 'contacts-list',
-			contactsFetchUrl: '<%= contact_list_user_path(current_user) %>',
-			conferenceUrl: '<%= new_conference_path %>'
+	
+	var user = new User({
+		    id: <%= current_user.id %>,
+		    name: '<%= current_user.name %>',
+		    onlineStatus: true
+		});
+	var channel = new Channel({
+			channelUrl: '<%= channel_path %>',
+			conferenceUrl: '<%= conferences_path %>',
+			notifiersContainer: document.getElementById('layout-footer'),
+			user: user
 		});
 <% end %>

@@ -23,6 +23,12 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   after_save :create_parameter
   
+  include Channel::Responder
+  
+  def name
+    self.login
+  end
+  
   def create_parameter
     unless self.parameter
       self.parameter = UserParameter.new

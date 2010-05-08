@@ -3,7 +3,7 @@
 		<td id="messages-list">
 			<div class='conference-messages-outer'>
 				<div id="conference-messages-<%= @conference.id %>" class='conference-messages-container'>
-					<%= render :partial=>"messages_list" %>
+					<%= render :partial=>"messages_list", :locals => {:messages => @messages} %>
 				</div>
 			</div>
 		</td>
@@ -20,6 +20,7 @@
 <% content_for :javascripts do %>
 	var authenticityToken = <%= form_authenticity_token.inspect %>;
 	conference = new Conference({
+			id: <%= @conference.id %>,
 			messageList: 'conference-messages-<%= @conference.id %>',
 			messageSender: 'conference-message-sender-<%= @conference.id %>',
 			messageDeliverUrl: '<%= conference_messages_path(@conference) %>',

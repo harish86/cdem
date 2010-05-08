@@ -44,6 +44,7 @@ ActionController::Routing::Routes.draw do |map|
     conference.resources :messages
   end
   map.unauthorized "/unauthorized", :controller=>"main", :action=>"unauthorized"
+  map.resource :channel
 
   # See how all your routes lay out with "rake routes"
   map.root :controller => "main", :action=>"index"
