@@ -1,6 +1,5 @@
 var ConferenceNotifier = Class.create({
   initialize: function(options) {
-    this.conferenceUrl = options.conferenceUrl;
     this.messages = options.messages;
     this.channel = options.channel;
     this.conferenceId = options.conferenceId;
@@ -127,7 +126,8 @@ var ConferenceNotifier = Class.create({
   },
   
   click: function() {
-    this.channel.newClientWindow(conferenceId);
+    this.channel.newClientWindow(this.conferenceId);
+    this.hide();
   }
 });
 

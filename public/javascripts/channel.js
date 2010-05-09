@@ -43,9 +43,9 @@ var ResponseManager = Class.create({
     var json = response.responseJSON;
     
     for(conferenceId in json.conferenceUpdates) {
-      conference = this.channel.getConferenceById(conferenceId);
-      if(conference) {
-        conference.update(json.conferenceUpdates[conferenceId]);
+      var clientWindow = this.channel.clientWindows.get(conferenceId);
+      if(clientWindow && !clientWindow.closed) {
+        clientWindow.conference.update(json.conferenceUpdates[conferenceId]);
       }
       else {
         if(json.conferenceUpdates[conferenceId].messages.length > 0)
@@ -114,8 +114,7 @@ var Channel = Class.create({
     }catch(e){alert(e);}
     if(conferenceNotifier) {
       conferenceNotifier.update({
-          conferenceUrl: this.conferenceUrl + conferenceId,
-          conferenceId: this.conferenceId,
+          conferenceId: conferenceId,
           messages: messages,
           container: this.notifiersContainer,
           channel: this
@@ -123,8 +122,7 @@ var Channel = Class.create({
     }
     else {
       conferenceNotifier = new ConferenceNotifier({
-          conferenceUrl: this.conferenceUrl + conferenceId,
-          conferenceId: this.conferenceId,
+          conferenceId: conferenceId,
           messages: messages,
           container: this.notifiersContainer,
           channel: this

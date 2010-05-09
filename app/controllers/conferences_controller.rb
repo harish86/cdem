@@ -26,7 +26,7 @@ class ConferencesController < ApplicationController
   
   def show
     @conference = Conference.find(params[:id])
-    @messages = @conference.messages.find(:all, :conditions => ["created_at > ?", Date.today.midnight])
+    @messages = @conference.messages.find(:all, :conditions => ["created_at >= ?", Date.today.midnight.to_s(:db)])
     @message = @conference.messages.new
   end
   

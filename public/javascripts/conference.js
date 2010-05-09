@@ -1,48 +1,3 @@
-var Message = Class.create({
-  initialize: function(options) {
-    this.id = options.id;
-    this.text = options.text;
-    this.sender = options.sender;
-  },
-  
-  textHtml: function() {
-    return this.text.gsub('\n', '<br />');
-  },
-  
-  senderHtml: function() {
-    var senderHtml = "<span class='message-sender'>";
-    
-    if(this.sender)
-      senderHtml += this.sender.name + ": ";
-    else
-      senderHtml += "Unknown: ";
-    
-    senderHtml += "</span>";
-    
-    return senderHtml;
-  },
-  
-  toHtmlWithoutSender: function() {
-    var messageHtml = "<div class='message-block'>"
-    if(!this.sender)
-      messageHtml += this.senderHtml();
-    
-    messageHtml += this.textHtml();
-    messageHtml += "</div>";
-    
-    return messageHtml
-  },
-  
-  toHtmlWithSender: function() {
-    var messageHtml = "<div class='message-block'>"
-    messageHtml += this.senderHtml();
-    messageHtml += this.textHtml();
-    messageHtml += "</div>";
-    
-    return messageHtml
-  }
-})
-
 var MessageSender = Class.create({
   initialize: function(options) {
     this.container = options.container;
@@ -136,5 +91,11 @@ var Conference = Class.create({
   },
   
   update: function(updates) {
+    try{
+    for(var i=0; i < updates.messages.length; i++) {
+      var message = new Message({ text:updates.messages[i].text, sender:this.getUserById(updates.messages[i].senderId) });
+      this.messageList.addMessage(message);
+    }
+    }catch(e){alert(e);}
   }
 });
