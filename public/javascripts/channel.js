@@ -43,7 +43,7 @@ var ResponseManager = Class.create({
     var json = response.responseJSON;
     
     for(conferenceId in json.conferenceUpdates) {
-      var clientWindow = this.channel.clientWindows.get(conferenceId);
+      var clientWindow = windowManager.findWindowByConferenceId(conferenceId);
       if(clientWindow && !clientWindow.closed) {
         clientWindow.conference.update(json.conferenceUpdates[conferenceId]);
       }
@@ -71,6 +71,8 @@ var Channel = Class.create({
     this.communicationTimeout = null;
     
     this.setUp();
+    
+    Channel.objects[Channel.objects.length] = this;
   },
   
   setUp: function() {
@@ -97,14 +99,24 @@ var Channel = Class.create({
   },
   
   newClientWindow: function(conferenceId) {
+    windowManager.openWindowByConferenceId(this.conferenceUrl + conferenceId, this.conferenceId);
+    /*
     var clientWindow = this.clientWindows.get(conferenceId);
     if(!clientWindow || clientWindow.closed) {
       clientWindow = window.open(this.conferenceUrl + conferenceId, 'conference-window-' + this.conferenceId, 'status=1,location=1,width=350,height=500');
       this.clientWindows.set(conferenceId, clientWindow);
+      window.setTimeout(this.setChannel.bind(this, conferenceId), 1000);
     }
     else {
       clientWindow.focus();
       clientWindow.conference.setFocus();
+    }*/
+  },
+  
+  setChannel: function(conferenceId) {
+    var clientWindow = this.clientWindows.get(conferenceId);
+    if(clientWindow && !clientWindow.closed) {
+      clientWindow.conference.channel = this;
     }
   },
   
@@ -130,5 +142,20 @@ var Channel = Class.create({
       this.conferenceNotifiers.set(conferenceId, conferenceNotifier);
     }
     conferenceNotifier.show();
+  },
+  
+  sendInstruction: function(instruction, immediate) {
+    this.instructionsManager.send(instruction, immediate);
   }
 })
+
+Channel.objects = new Array;
+
+Channel.findById = function(id) {
+  for(var i = 0; i < Channel.objects.length; i++) {
+    if(Channel.objects[i].id == id)
+      return Channel.objects[i];
+  }
+  
+  return false;
+}

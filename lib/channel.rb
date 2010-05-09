@@ -56,19 +56,20 @@ module Channel
   module Reciever
     def parse_commands(instructions)
       errors = []
-      for instruction in instructions
+      
+      instructions.each do |index, instruction|
         case instruction[:command]
           when "send_message":
-            conference = Conference.find(instruction[:params][1])
-            message = conference.messages.new(:text => instruction[:params][0])
+            conference = Conference.find(instruction[:params]["1"])
+            message = conference.messages.new(:text => instruction[:params]["0"])
             current_user.sent_messages << message
             
           when "set_status":
             if command[:params][1]
-              conference_user = current_user.conference_users.find_by_conference_id(instruction[:params][1])
-              conference_user.update_attribute(:status, instruction[:params][0])
+              conference_user = current_user.conference_users.find_by_conference_id(instruction[:params]["1"])
+              conference_user.update_attribute(:status, instruction[:params]["0"])
             else
-              current_user.parameter.update_attribute(:status, instruction[:params][0])
+              current_user.parameter.update_attribute(:status, instruction[:params]["0"])
             end
             
           else

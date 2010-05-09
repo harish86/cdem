@@ -26,7 +26,11 @@ var MessageSender = Class.create({
         {
           if(this.input.value.gsub(' ', '') != '')
           {
-            sendRequest(this.messageDeliverUrl, {'message[text]': this.input.value}, this.conference.responseParser);
+            if(window.opener.channel)
+              window.opener.channel.instructionsManager.send(['send_message', this.input.value, this.conference.id], true);
+            else
+              sendRequest(this.messageDeliverUrl, {'message[text]': this.input.value}, this.conference.responseParser);
+            
             var message = new Message({ text:this.input.value, sender:this.conference.getUserById(this.senderId) });
             this.conference.messageList.addMessage(message);
             this.form.reset();
