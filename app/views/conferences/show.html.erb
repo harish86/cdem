@@ -3,7 +3,7 @@
 		<td id="messages-list">
 			<div class='conference-messages-outer'>
 				<div id="conference-messages-<%= @conference.id %>" class='conference-messages-container'>
-					<%= render :partial=>"messages_list", :locals => {:messages => @messages} %>
+					<%# render :partial=>"messages_list", :locals => {:messages => @messages} %>
 				</div>
 			</div>
 		</td>
@@ -32,5 +32,9 @@
 				id: <%= user.id %>,
 				name: '<%= user.login %>'
 			});
+	<% end %>
+		
+	<% for message in @messages %>
+		conference.messageList.addMessage(new Message({ text:<%= message.text.inspect %>, sender:conference.getUserById(<%= message.sender_id %>) }));
 	<% end %>
 <% end %>

@@ -9,11 +9,14 @@ var Message = Class.create({
     return this.text.gsub('\n', '<br />');
   },
   
-  senderHtml: function() {
+  senderHtml: function(thisUserId) {
     var senderHtml = "<span class='message-sender'>";
     
     if(this.sender)
-      senderHtml += this.sender.name + ": ";
+      if(this.sender.id == thisUserId)
+        senderHtml += "Me: ";
+      else
+        senderHtml += this.sender.name + ": ";
     else
       senderHtml += "Unknown: ";
     
@@ -33,9 +36,9 @@ var Message = Class.create({
     return messageHtml
   },
   
-  toHtmlWithSender: function() {
+  toHtmlWithSender: function(thisUserId) {
     var messageHtml = "<div class='message-block'>"
-    messageHtml += this.senderHtml();
+    messageHtml += this.senderHtml(thisUserId);
     messageHtml += this.textHtml();
     messageHtml += "</div>";
     

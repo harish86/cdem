@@ -27,6 +27,7 @@
 #chat-table #messages-list .conference-messages-container
 {
   position: absolute;
+  padding: 3px;
 }
 
 #chat-table #message-input

@@ -54,7 +54,7 @@ var MessageList = Class.create({
       this.container.innerHTML += message.toHtmlWithoutSender();
     }
     else {
-      this.container.innerHTML += message.toHtmlWithSender();
+      this.container.innerHTML += message.toHtmlWithSender(this.conference.userId);
     }
     
     this.container.parentNode.scrollTop = this.container.offsetHeight;
@@ -67,8 +67,9 @@ var Conference = Class.create({
   initialize: function(options) {
     this.id = options.id;
     this.users = new Array;
+    this.userId = options.userId;
     this.messageSender = new MessageSender({ container:document.getElementById(options.messageSender), messageDeliverUrl:options.messageDeliverUrl, conference:this, senderId:options.userId });
-    this.messageList = new MessageList({ container:document.getElementById(options.messageList), messageFetchUrl:options.messageFetchUrl, rconference:this });
+    this.messageList = new MessageList({ container:document.getElementById(options.messageList), messageFetchUrl:options.messageFetchUrl, conference:this });
     
     document.observe('dom:loaded', this.setFocus.bind(this));
   },
