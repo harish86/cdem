@@ -100,17 +100,6 @@ var Channel = Class.create({
   
   newClientWindow: function(conferenceId) {
     windowManager.openWindowByConferenceId(this.conferenceUrl + conferenceId, this.conferenceId);
-    /*
-    var clientWindow = this.clientWindows.get(conferenceId);
-    if(!clientWindow || clientWindow.closed) {
-      clientWindow = window.open(this.conferenceUrl + conferenceId, 'conference-window-' + this.conferenceId, 'status=1,location=1,width=350,height=500');
-      this.clientWindows.set(conferenceId, clientWindow);
-      window.setTimeout(this.setChannel.bind(this, conferenceId), 1000);
-    }
-    else {
-      clientWindow.focus();
-      clientWindow.conference.setFocus();
-    }*/
   },
   
   setChannel: function(conferenceId) {

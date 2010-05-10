@@ -46,8 +46,10 @@ module Channel
     
     def channel_response
       output = {}
-      output[:conferenceUpdates] = self.conference_updates
-      output[:contactUpdates] = self.contact_statuses
+      Rails.logger.silence do
+        output[:conferenceUpdates] = self.conference_updates
+        output[:contactUpdates] = self.contact_statuses
+      end
       
       return output
     end

@@ -1,13 +1,46 @@
 var WindowManager = Class.create({
-  initialize: function() {
+  initialize: function(options) {
     this.clientWindows = new Array;
     
     WindowManager.objects[WindowManager.objects.length] = this;
     this.id = WindowManager.objects.length;
+    if(!options)
+      options = {};
+      
+    this.setWindowProperties(options.windowProperties);
+  },
+  
+  setWindowProperties: function(properties) {
+    this.windowProperties = {
+      toolbar: 'no',
+      menubar: 'no',
+      location: 'no',
+      scrollbar: 'yes',
+      resizable: 'yes',
+      status: 'yes',
+      width: '350',
+      height: '500'
+    };
+    
+    if(properties)
+      for(property in properties) {
+        this.windowProperties[property] = properties[property];
+      }
+  },
+  
+  windowPropertiesToParams: function() {
+    var paramString = "";
+    var sp = "";
+    for(property in this.windowProperties) {
+      paramString += sp + property + "=" + this.windowProperties[property];
+      sp = ",";
+    }
+    
+    return paramString;
   },
   
   openWindowByUrl: function(url) {
-    var w = window.open(url, 'client-window-' + this.Id, 'status=1,location=1,width=350,height=500');
+    var w = window.open(url, 'manager-' + this.Id + '-window-' + this.clientWindows.length, this.windowPropertiesToParams());
     this.clientWindows[this.clientWindows.length] = w;
   },
   
