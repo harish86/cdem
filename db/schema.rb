@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100411164250) do
+ActiveRecord::Schema.define(:version => 20100510090910) do
 
   create_table "conference_users", :force => true do |t|
     t.integer  "conference_id"
@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(:version => 20100411164250) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "recomender_id"
-    t.boolean  "status",        :default => false
+    t.boolean  "status",            :default => false
     t.datetime "terminated_at"
     t.integer  "terminator_id"
+    t.integer  "last_message_read", :default => 0
   end
 
   create_table "conferences", :force => true do |t|
@@ -40,16 +41,16 @@ ActiveRecord::Schema.define(:version => 20100411164250) do
   end
 
   create_table "messages", :force => true do |t|
-    t.text     "text"
-    t.integer  "sender_id",     :null => false
-    t.integer  "conference_id", :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "text",          :limit => 1000
+    t.integer  "sender_id"
+    t.integer  "conference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_parameters", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "status"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

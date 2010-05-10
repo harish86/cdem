@@ -17,7 +17,7 @@ var WindowManager = Class.create({
       location: 'no',
       scrollbar: 'yes',
       resizable: 'yes',
-      status: 'yes',
+      status: 'no',
       width: '350',
       height: '500'
     };

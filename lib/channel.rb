@@ -2,7 +2,7 @@ module Channel
   module Responder
     def conference_updates
       output = {}
-      for conference_user in self.conference_users.find(:all, :select => "id, conference_id, last_read_at, user_id", :include => [:conference])
+      for conference_user in self.conference_users.find(:all, :select => "id, conference_id, last_message_read_id, last_read_at, user_id", :include => [:conference])
         conference_data = {}
         conference_data[:members] = []
         for user in conference_user.conference.users
