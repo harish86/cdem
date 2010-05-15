@@ -24,7 +24,7 @@
 						<% if contact.initiator %>
 							You have requested
 						<% else %>
-							<%= link_to "Accept this contact", :controller=>"users", :action=>"accept_contact", :contact_id=>contact.id %>
+							<%= link_to "Accept this contact", accept_contact_users_path(:contact_id=>contact.id) %>
 						<% end %>
 					<% else %>
 						Accepted
@@ -60,7 +60,7 @@
 			channelUrl: '<%= channel_path %>',
 			conferenceUrl: '<%= conferences_path %>',
 			notifiersContainer: document.getElementById('layout-footer'),
-			communicationInterval: 5000,
+			communicationInterval: 2000,
 			user: user
 		});
 <% end %>

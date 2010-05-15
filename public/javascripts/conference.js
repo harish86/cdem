@@ -76,6 +76,8 @@ var Conference = Class.create({
     this.messageList = new MessageList({ container:document.getElementById(options.messageList), messageFetchUrl:options.messageFetchUrl, conference:this });
     
     document.observe('dom:loaded', this.setFocus.bind(this));
+    document.body.observe("click", this.setFocus.bind(this));
+    //document.body.setAttribute("onfocus", "conference.setFocus();");
   },
   
   responseParser: function(response) {

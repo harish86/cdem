@@ -38,7 +38,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "/signup", :controller=>"account", :action=>"signup"
   map.reset_password "/reset_password", :controller=>"account", :action=>"reset_password" 
   
-  map.resources :users, :collection => {:add_to_contacts => :any}, :member => {:contact_list => :any}
+  map.resources :users, :collection => {:add_to_contacts => :any, :accept_contact => :any}, :member => {:contact_list => :any}
   
   map.resources :conferences do |conference|
     conference.resources :messages
