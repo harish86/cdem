@@ -69,7 +69,7 @@ var WindowManager = Class.create({
   openWindowByUserIds: function(url, userIds) {
     var clientWindow = this.findWindowByUserIds(userIds, true);
     
-    if(clientWindow) {
+    if(clientWindow && !clientWindow.closed) {
       clientWindow.focus();
       clientWindow.conference.setFocus();
     }
