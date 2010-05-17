@@ -2,14 +2,16 @@
 
 <script>
   <%= yield :javascripts %>
+  
+  <!-- --------- Rounded Corners ------------- -->
+	  /* IE only */
+	  //DD_roundies.addRule('.roundify', '10px');
 	
-  /* IE only */
-  //DD_roundies.addRule('.roundify', '10px');
-
-  /* varying radii, IE only */
-  //DD_roundies.addRule('.something_else', '10px 4px');
-
-  /* varying radii, "all" browsers */
-  DD_roundies.addRule('.borderradius5', '5px', true);
-  DD_roundies.addRule('.borderradius10', '10px', true);
+	  /* varying radii, IE only */
+	  //DD_roundies.addRule('.something_else', '10px 4px');
+	
+	  /* varying radii, "all" browsers */
+	  DD_roundies.addRule('.borderradius5', '5px', true);
+	  DD_roundies.addRule('.borderradius10', '10px', true);
+  <!--  ------------------------------------   -->
 </script>
