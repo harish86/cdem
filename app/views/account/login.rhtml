@@ -1,30 +1,32 @@
 <div id="login-page">
-  <div id="chat-logo" class="float-left">
-    <div>
+  <div id="login-page-left" class="float-left">
+    <div id="chat-logo">
       <%= image_tag "site-images/chat-icon.png" %>
     </div>
-    <div class="align-center large-font bold" style="color: BurlyWood;">
+    <div id="logo-caption" class="align-center large-font bold" style="color: BurlyWood;">
       Online Chatting Demonstration
     </div>
   </div>
   
-  <div id="login-form" class="float-right">
-    <% form_tag do -%>
-    Login<br/>
-    <%= text_field_tag 'login' %></p>
+  <div id="login-page-right" class="float-right margin10 borderradius10 green-border solidborder5">
+    <div id="login-form" class="padding10">
+      <% form_tag do -%>
+      Login<br/>
+      <%= text_field_tag 'login' %></p>
+      
+      Password<br/>
+      <%= password_field_tag 'password' %></p>
+      
+      Remember me
+      <%= check_box_tag 'remember_me' %></p>
+      
+      <p><%= submit_tag 'Log in' %> </p>
+      <% end -%>
+    </div>
     
-    Password<br/>
-    <%= password_field_tag 'password' %></p>
-    
-    Remember me
-    <%= check_box_tag 'remember_me' %></p>
-    
-    <p><%= submit_tag 'Log in' %> </p>
-    <p>
-      Dont you have account? Then just follow few steps and signup here</br> 
-      <%= link_to "Sign up", :controller => "/account", :action => "signup" %>
-    </p>
-    <% end -%>
+    <div id="signup-link" class="padding10 white-color green-background">
+        Don't have an account? <%= link_to "Sign up", {:controller => "/account", :action => "signup"}, :class => "underline blue-color" %> here.
+    </div>
   </div>
   
   <div class="clear-height"></div>

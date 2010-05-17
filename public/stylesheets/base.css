@@ -54,10 +54,83 @@
 }
 /*--------------------------------*/
 
+/*------------ Background Colors -------------*/
+.green-background
+{
+  background-color: #66CDAA;
+}
+/*--------------------------------*/
+
 /*------------ Colors -------------*/
 /* Font-sizes */
-.blue-color, .blue-color a
+.blue-color, .blue-color-link
 {
-  color: dodgerblue;
+  color: LightSlateBlue;
+}
+
+.white-color, .white-color-link
+{
+  color: white;
+}
+
+.green-color, .green-color-link
+{
+  color: #66CDAA;
+}
+/*--------------------------------*/
+
+/*------------ Text decorations ----------*/
+.underline
+{
+  text-decoration: underline;
+}
+/*---------------------------------*/
+
+/*------------ Padding -------------*/
+.padding5
+{
+  padding: 5px;
+}
+
+.padding10
+{
+  padding: 10px;
+}
+/*--------------------------------*/
+
+/*------------ Margin -------------*/
+.margin5
+{
+  margin: 5px;
+}
+
+.margin10
+{
+  margin: 10px;
+}
+/*--------------------------------*/
+
+/*------------ Borders -------------*/
+/* Solid border */
+.solidborder5
+{
+  border: 5px solid;
+}
+
+/* Border color */
+.green-border
+{
+  border-color: #66CDAA;
+}
+
+/* Border radius */
+.borderradius5
+{
+  -moz-border-radius: 5px;
+}
+
+.borderradius10
+{
+  -moz-border-radius: 10px;
 }
 /*--------------------------------*/
