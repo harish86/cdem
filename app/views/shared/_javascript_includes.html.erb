@@ -1,5 +1,15 @@
-<%= javascript_include_tag :defaults, 'basic', 'message', 'window_manager', 'chatting_system', 'conference', 'conference_notifier', 'contact_list', 'channel' %>
+<%= javascript_include_tag :defaults, 'basic', 'message', 'window_manager', 'chatting_system', 'conference', 'conference_notifier', 'contact_list', 'channel', 'DD_roundies_0.0.2a' %>
 
 <script>
-	<%= yield :javascripts %>
+  <%= yield :javascripts %>
+	
+  /* IE only */
+  //DD_roundies.addRule('.roundify', '10px');
+
+  /* varying radii, IE only */
+  //DD_roundies.addRule('.something_else', '10px 4px');
+
+  /* varying radii, "all" browsers */
+  DD_roundies.addRule('.borderradius5', '5px', true);
+  DD_roundies.addRule('.borderradius10', '10px', true);
 </script>
