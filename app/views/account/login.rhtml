@@ -1,14 +1,31 @@
-<% form_tag do -%>
-Login<br/>
-<%= text_field_tag 'login' %></p>
-
-Password<br/>
-<%= password_field_tag 'password' %></p>
-
-Remember me
-<%= check_box_tag 'remember_me' %></p>
-
-<p><%= submit_tag 'Log in' %> </p>
-Dont you have account? Then just follow few steps and signup here</br> 
-<%= link_to "Sign up", :controller => "/account", :action => "signup" %></p>
-<% end -%>
+<div id="login-page">
+  <div id="chat-logo" class="float-left">
+    <div>
+      <%= image_tag "site-images/chat-icon.png" %>
+    </div>
+    <div class="align-center large-font bold" style="color: BurlyWood;">
+      Online Chatting Demonstration
+    </div>
+  </div>
+  
+  <div id="login-form" class="float-right">
+    <% form_tag do -%>
+    Login<br/>
+    <%= text_field_tag 'login' %></p>
+    
+    Password<br/>
+    <%= password_field_tag 'password' %></p>
+    
+    Remember me
+    <%= check_box_tag 'remember_me' %></p>
+    
+    <p><%= submit_tag 'Log in' %> </p>
+    <p>
+      Dont you have account? Then just follow few steps and signup here</br> 
+      <%= link_to "Sign up", :controller => "/account", :action => "signup" %>
+    </p>
+    <% end -%>
+  </div>
+  
+  <div class="clear-height"></div>
+</div>

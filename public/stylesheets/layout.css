@@ -1,11 +1,7 @@
 body
 {
   margin: 0;
-}
-
-.clear-height
-{
-    clear:both;
+  background-color: aliceblue;
 }
 
 #layout-head
@@ -34,4 +30,12 @@ body
   left: 0;
   width: 100%;
   z-index:1;
+}
+
+/*----------------- Page ----------------*/
+#page-header, #page-body, #page-footer
+{
+  margin: auto;
+  max-width: 1300px;
+  min-width: 1050px;
 }

@@ -1,0 +1,23 @@
+<% if message[:notice] %>
+	<div class="notice">
+		<%= message[:notice] %>
+	</div>
+<% end %>
+
+<% if message[:success] %>
+	<div class="success">
+		<%= message[:success] %>
+	</div>
+<% end %>
+
+<% if message[:warning] %>
+	<div class="warning">
+		<%= message[:warning] %>
+	</div>
+<% end %>
+
+<% if message[:error] %>
+	<div class="error">
+		<%= message[:error] %>
+	</div>
+<% end %>

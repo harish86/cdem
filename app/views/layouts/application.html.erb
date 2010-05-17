@@ -16,11 +16,9 @@
       <div id="page-body">
         <%= "<h1>#{@page_title}</h1>" if @page_title %>
         
-        <% if flash[:notice] %>
-          <div id="flash-notice">
-            <%= flash[:notice] %>
-          </div>
-        <% end %>
+        <div id="flash-message">
+          <%= render :partial => "shared/flash_message", :locals => {:message => flash} %>
+        </div>
         
         <div id="page-content">
           <%= yield %>

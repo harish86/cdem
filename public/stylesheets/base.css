@@ -3,3 +3,61 @@
   font-family:Helvetica;
   text-decoration: none;
 }
+
+.clear-height
+{
+    clear:both;
+}
+
+/*------------ Floats -------------*/
+
+.float-left
+{
+  float: left;
+}
+
+.float-right
+{
+  float: right;
+}
+/*--------------------------------*/
+
+/*------------ Alignments -------------*/
+
+.align-left
+{
+  text-align: left;
+}
+
+.align-center
+{
+  text-align: center;
+}
+
+.align-right
+{
+  text-align: right;
+}
+/*--------------------------------*/
+
+/*------------ Fonts -------------*/
+/* Font-sizes */
+.large-font
+{
+  font-size: 34px;
+}
+
+/* Others */
+.bold
+{
+  font-weight: bold;
+}
+/*--------------------------------*/
+
+/*------------ Colors -------------*/
+/* Font-sizes */
+.blue-color, .blue-color a
+{
+  color: dodgerblue;
+}
+/*--------------------------------*/
