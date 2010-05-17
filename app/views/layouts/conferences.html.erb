@@ -1,5 +1,7 @@
 <html>
   <head>
+  	<link rel="icon" type="images/png" href="<%= image_path('icon.png') %>" />
+  	
     <title><%= @page_title || 'Chatting' %></title>
     <%= render :partial=>"shared/stylesheet_includes" %>
   </head>
@@ -9,24 +11,16 @@
     </div>
     
     <div id="layout-body">
-      <div id="page-header">
+      <div id="conference-header">
       </div>
       
-      <div id="page-body">
-        <%= "<h1>#{@page_title}</h1>" if @page_title %>
-        
-        <% if flash[:notice] %>
-          <div id="flash-notice">
-            <%= flash[:notice] %>
-          </div>
-        <% end %>
-        
-        <div id="page-content">
+      <div id="conference-body">
+        <div id="conference-content">
           <%= yield %>
         </div>
       </div>
       
-      <div id="page-footer">
+      <div id="conference-footer">
       </div>
     </div>
     
