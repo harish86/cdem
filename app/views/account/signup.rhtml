@@ -1,16 +1,51 @@
-<%= error_messages_for :user %>
-<% form_for :user do |f| -%>
-Login<br/>
-<%= f.text_field :login %></p>
-
-Email<br/>
-<%= f.text_field :email %></p>
-
-Password<br/>
-<%= f.password_field :password %></p>
-
-Confirm Password<br/>
-<%= f.password_field :password_confirmation %></p>
-
-<p><%= submit_tag 'Sign up' %></p>
-<% end -%>
+<div id="login-page">
+  <div id="login-page-left" class="float-left">
+    <div id="chat-logo">
+      <%= image_tag "site-images/chat-icon.png" %>
+    </div>
+    <div id="logo-caption" class="align-center font-size34 bold" style="color: BurlyWood;">
+      Online Chatting Demonstration
+    </div>
+  </div>
+  
+  <div id="signup-page-right" class="float-right margin10 borderradius10 green-background">
+    <% form_for :user, :html => {:class => "margin0"} do |f| -%>
+      <div id="signup-form" class="font-size12 padding10 borderradius10 solidborder5 green-border white-background" style="">
+        <span class="font-size14  bold">
+          Fill in the following information to create an account.
+        </span>
+        
+        <p>
+          <%= error_messages_for :user %>
+          <%= f.label :login %>
+          <%= f.text_field :login, :class=>"display-block width100" %>
+        </p>
+        
+        <p>
+          <%= f.label :email %>
+          <%= f.text_field :email, :class=>"display-block width100" %>
+        </p>
+        
+        <p>
+          <%= f.label :password %>
+          <%= f.password_field :password, :class=>"display-block width100" %>
+        </p>
+        
+        <p>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, :class=>"display-block width100" %>
+        </p>
+        
+        <p>
+          <%= submit_tag 'Create >>' %>
+        </p>
+      </div>
+      
+      <div id="signup-link" class="font-size14 padding10 align-center">
+        Already have an account? <%= link_to "Login", login_path %> here.
+      </div>
+    <% end -%>
+  </div>
+  
+  <div class="clear-height"></div>
+</div>

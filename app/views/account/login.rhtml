@@ -3,28 +3,40 @@
     <div id="chat-logo">
       <%= image_tag "site-images/chat-icon.png" %>
     </div>
-    <div id="logo-caption" class="align-center large-font bold" style="color: BurlyWood;">
+    <div id="logo-caption" class="align-center font-size34 bold" style="color: BurlyWood;">
       Online Chatting Demonstration
     </div>
   </div>
   
-  <div id="login-page-right" class="float-right margin10 borderradius10 green-border solidborder5">
-    <div id="login-form" class="padding10">
+  <div id="login-page-right" class="float-right margin10 borderradius10 green-background">
+    <div id="login-form" class="font-size12 padding10 borderradius10 solidborder5 green-border white-background">
+      <div class="font-size14 underline bold">
+        Sign in below to chat instantly.
+      </div>
+      
       <% form_tag do -%>
-      Login<br/>
-      <%= text_field_tag 'login' %></p>
-      
-      Password<br/>
-      <%= password_field_tag 'password' %></p>
-      
-      Remember me
-      <%= check_box_tag 'remember_me' %></p>
-      
-      <p><%= submit_tag 'Log in' %> </p>
+        <p>
+          <%= label_tag "login" %>
+          <%= text_field_tag 'login', '', :class=>"width100" %>
+        </p>
+          
+        <p>
+          <%= label_tag "password" %>
+          <%= password_field_tag 'password', '', :class=>"width100" %>
+        </p>
+          
+        <p>
+          <%= submit_tag 'Log in', :class => "float-right" %>
+          
+          <%= label_tag "remember_me" %>
+          <%= check_box_tag 'remember_me' %>
+          
+          <div class="clear-height"></div>
+        </p>
       <% end -%>
     </div>
     
-    <div id="signup-link" class="padding10 green-background">
+    <div id="signup-link" class="font-size14 padding10">
         Don't have an account? <%= link_to "Sign up", {:controller => "/account", :action => "signup"}, :class => "underline blue-color" %> here.
     </div>
   </div>
