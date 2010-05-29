@@ -1,0 +1,17 @@
+<table id="conference-members-table" class="height100 width100 no-border-space">
+	<tr>
+		<td id="members-list" class="align-top">
+			<div class='conference-members-outer'>
+				<div id="conference-members-<%= @conference.id %>" class='conference-members-container'>
+					<% for user in @conference.users %>
+						<%= user.name %> <br />
+					<% end %>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td id="current-user" class="align-top">
+		</td>
+	</tr>
+</table>

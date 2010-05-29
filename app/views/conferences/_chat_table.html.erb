@@ -1,0 +1,18 @@
+<table id="chat-table" class="height100 width100">
+	<tr>
+		<td id="messages-list" style="border-bottom: 5px solid LightSlateGray;">
+			<div class='conference-messages-outer'>
+				<div id="conference-messages-<%= @conference.id %>" class='conference-messages-container'>
+					<%# render :partial=>"messages_list", :locals => {:messages => @messages} %>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td id="message-input">
+			<div id="conference-message-sender-<%= @conference.id %>">
+				<%= render :partial=>"message_input", :locals=>{:message=>@message, :conference=>@conference} %>
+			</div>
+		</td>
+	</tr>
+</table>

@@ -38,6 +38,21 @@
 {
   text-align: right;
 }
+
+.align-top
+{
+  vertical-align: top;
+}
+
+.align-middle
+{
+  vertical-align: middle;
+}
+
+.align-bottom
+{
+  vertical-align: bottom;
+}
 /*--------------------------------*/
 
 /*------------ Fonts -------------*/
@@ -94,6 +109,16 @@
 {
   background-color: #ffffff;
 }
+
+.lavenderblue-background
+{
+  background-color: lavender;
+}
+
+.bordergray-background
+{
+  background-color: LightSlateGray;
+}
 /*--------------------------------*/
 
 /*------------ Colors -------------*/
@@ -101,6 +126,11 @@
 .blue-color, .blue-color-link
 {
   color: LightSlateBlue;
+}
+
+.lavenderblue-color, .lavenderblue-color-link
+{
+  color: lavender;
 }
 
 .white-color, .white-color-link
@@ -111,6 +141,11 @@
 .green-color, .green-color-link
 {
   color: #66CDAA;
+}
+
+.bordergray-color, .bordergray-color-link
+{
+  color: LightSlateGray;
 }
 /*--------------------------------*/
 
@@ -156,6 +191,12 @@
 /*--------------------------------*/
 
 /*------------ Borders -------------*/
+.no-border-space
+{
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
 /* Solid border */
 .solidborder5
 {
@@ -169,12 +210,12 @@
 }
 
 /* Rounded borders */
-.borderradius5
+.border-radius5
 {
   -moz-border-radius: 5px;
 }
 
-.borderradius10
+.borderradius10, .border-radius10
 {
   -moz-border-radius: 10px;
 }
@@ -189,6 +230,43 @@
 .width75
 {
   width: 75%;
+}
+
+.width60
+{
+  width: 60%;
+}
+
+.width40
+{
+  width: 40%;
+}
+
+.width25
+{
+  width: 25%;
+}
+
+.width200px
+{
+  width: 200px;
+}
+
+.width150px
+{
+  width: 150px;
+}
+/* ----------------------- */
+
+/* ---------Height--------- */
+.height100
+{
+  height: 100%;
+}
+
+.height75
+{
+  height: 75%;
 }
 /* ----------------------- */
 

@@ -18,8 +18,8 @@ var WindowManager = Class.create({
       scrollbar: 'yes',
       resizable: 'yes',
       status: 'no',
-      width: '350',
-      height: '500'
+      width: '550',
+      height: '600'
     };
     
     if(properties)
@@ -40,7 +40,7 @@ var WindowManager = Class.create({
   },
   
   openWindowByUrl: function(url) {
-    var w = window.open(url, 'manager-' + this.Id + '-window-' + this.clientWindows.length, this.windowPropertiesToParams());
+    var w = window.open(url, 'manager_' + this.id + '_window_' + this.clientWindows.length, this.windowPropertiesToParams());
     this.clientWindows[this.clientWindows.length] = w;
   },
   

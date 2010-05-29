@@ -1,5 +1,6 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
+  include Authentication
   # Virtual attribute for the unencrypted password
   attr_accessor :password
   
@@ -43,7 +44,11 @@ class User < ActiveRecord::Base
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
-    u = find_by_login(login) # need to get the salt
+    if login.match(Authentication.email_regex)
+      u = find_by_email(login) # Login with email
+    else
+      u = find_by_login(login) # need to get the salt
+    end
     u && u.authenticated?(password) ? u : nil
   end
 
