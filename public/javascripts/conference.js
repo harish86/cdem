@@ -1,3 +1,99 @@
+var ConferenceHeader = Class.create({
+  initialize: function(options) {
+    this.container = document.getElementById(options.conferenceHeader);
+    this.conference = options.conference;
+    this.setUp();
+  },
+  
+  setUp: function() {
+    this.container.innerHTML = this.innerHtml();
+    this.titleContainer = document.getElementById(this.titleAttributes().id);
+    this.titleInputContainer = document.getElementById(this.titleInputAttributes().id);
+    this.titleInput = this.titleInputContainer.getElementsByTagName('INPUT')[0];
+    
+    this.updateTitle();
+    
+    this.hideTitleInput();
+    this.showTitleContainer();
+    
+    this.titleContainer.observe("click", this.titleInputMode.bindAsEventListener(this));
+    this.titleInput.observe("keypress", this.titleInputKeyPress.bindAsEventListener(this));
+    this.titleInput.observe("blur", this.titleShowMode.bindAsEventListener(this));
+  },
+  
+  titleAttributes: function() {
+    return {id: 'conference-title-' + this.conference.id, className: 'conference-title'};
+  },
+  
+  titleInputAttributes: function() {
+    return {id: 'conference-title-input-' + this.conference.id, className: 'conference-title-input'};
+  },
+  
+  showTitleContainer: function() {
+    this.titleContainer.style.display = "inline";
+  },
+  
+  hideTitleContainer: function() {
+    this.titleContainer.style.display = "none";
+  },
+  
+  showTitleInput: function() {
+    this.titleInputContainer.style.display = "block";
+  },
+  
+  hideTitleInput: function() {
+    this.titleInputContainer.style.display = "none";
+  },
+  
+  updateTitle: function() {
+    this.titleContainer.innerHTML = this.conference.title.empty() ? "Clicke here to set title for this conference" : this.conference.title;
+    document.title = "Conference" + (this.conference.title.empty() ? "" : " - " + this.conference.title);
+  },
+  
+  innerHtml: function() {
+    output = ""
+    output += "<span id='" + this.titleAttributes().id + "' class='" + this.titleAttributes().className + "'>";
+    output += "</span>";
+    output += "<div id='" + this.titleInputAttributes().id + "' class='" + this.titleInputAttributes().className + "'>";
+    output += "<input type='text' value='' class='lightblue-background align-center no-border'>";
+    output += "</div>";
+    
+    return output;
+  },
+  
+  titleInputKeyPress: function(event) {
+    switch(event.keyCode)
+    {
+      case 13:
+        this.conference.title = this.titleInput.value;
+        this.updateTitle();
+        if(window.opener.channel)
+          window.opener.channel.instructionsManager.send(['set_title', this.titleInput.value, this.conference.id], true);
+          
+        event.stop();
+        this.titleShowMode();
+        
+      case 27:
+        event.stop();
+        this.titleShowMode();
+    }
+  },
+  
+  titleInputMode: function() {
+    this.titleInput.value = this.conference.title;
+    this.hideTitleContainer();
+    this.showTitleInput();
+    
+    this.titleInput.focus();
+    this.titleInput.select();
+  },
+  
+  titleShowMode: function() {
+    this.hideTitleInput();
+    this.showTitleContainer();
+  }
+});
+
 var MessageSender = Class.create({
   initialize: function(options) {
     this.container = options.container;
@@ -37,6 +133,10 @@ var MessageSender = Class.create({
           }
           event.stop();
         }
+        
+      case 27:
+        event.stop();
+        this.form.reset();
     }
   }
 });
@@ -69,21 +169,28 @@ var MessageList = Class.create({
 
 var Conference = Class.create({
   initialize: function(options) {
+    options.conference = this;
     this.id = options.id;
     this.users = new Array;
     this.userId = options.userId;
-    this.messageSender = new MessageSender({ container:document.getElementById(options.messageSender), messageDeliverUrl:options.messageDeliverUrl, conference:this, senderId:options.userId });
-    this.messageList = new MessageList({ container:document.getElementById(options.messageList), messageFetchUrl:options.messageFetchUrl, conference:this });
+    this.title = options.title;
+    this.conferenceHeader = new ConferenceHeader(options);
+    this.messageSender = new MessageSender({ container:document.getElementById(options.messageSenderContainer), messageDeliverUrl:options.messageDeliverUrl, conference:this, senderId:options.userId });
+    this.messageList = new MessageList({ container:document.getElementById(options.messageListContainer), messageFetchUrl:options.messageFetchUrl, conference:this });
     
+    this.setUp();
+  },
+  
+  setUp: function() {
     document.observe('dom:loaded', this.setFocus.bind(this));
-    document.body.observe("click", this.setFocus.bind(this));
+    this.messageList.container.parentNode.observe("click", this.setFocus.bind(this));
     //document.body.setAttribute("onfocus", "conference.setFocus();");
   },
   
   responseParser: function(response) {
     var json = response.responseJSON;
   },
-
+  
   getUserById: function(userId) {
     for(var i=0; i<this.users.length; i++) {
       var user = this.users[i];
@@ -99,10 +206,16 @@ var Conference = Class.create({
   
   update: function(updates) {
     try{
-    for(var i=0; i < updates.messages.length; i++) {
-      var message = new Message({ text:updates.messages[i].text, sender:this.getUserById(updates.messages[i].senderId) });
-      this.messageList.addMessage(message);
-    }
+      for(var i=0; i < updates.messages.length; i++) {
+        var message = new Message({ text:updates.messages[i].text, sender:this.getUserById(updates.messages[i].senderId) });
+        this.messageList.addMessage(message);
+      }
+      
+      if(updates.conferenceDetails)
+      {
+        this.title = updates.conferenceDetails.title;
+        this.conferenceHeader.updateTitle();
+      }
     }catch(e){alert(e);}
   }
 });

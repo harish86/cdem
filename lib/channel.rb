@@ -2,7 +2,7 @@ module Channel
   module Responder
     def conference_updates
       output = {}
-      for conference_user in self.conference_users.find(:all, :select => "id, conference_id, last_message_read_id, last_read_at, user_id", :include => [:conference])
+      for conference_user in self.conference_users.find(:all, :select => "id, conference_id, last_message_read_id, last_read_at, user_id, updated_at", :include => [:conference])
         conference_data = {}
         conference_data[:members] = []
         for user in conference_user.conference.users
@@ -24,6 +24,11 @@ module Channel
             }
         end
         
+        if conference_user.updated_at <= conference_user.conference.updated_at
+          conference_data[:conferenceDetails] = {
+              :title  =>  conference_user.conference.title.to_s
+            }
+        end
         output[conference_user.conference_id] = conference_data
       end
       
@@ -73,6 +78,10 @@ module Channel
             else
               current_user.parameter.update_attribute(:status, instruction[:params]["0"])
             end
+            
+          when "set_title":
+            conference_user = current_user.conference_users.find_by_conference_id(instruction[:params]["1"])
+            conference_user.conference.update_attribute(:title, instruction[:params]["0"])
             
           else
             errors << "error: Unrecognised command #{instruction[:command]}"

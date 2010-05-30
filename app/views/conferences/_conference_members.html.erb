@@ -1,6 +1,6 @@
-<table id="conference-members-table" class="height100 width100 no-border-space">
+<table id="conference-members-table" class="height100 width100 border-spacing3">
 	<tr>
-		<td id="members-list" class="align-top">
+		<td id="members-list" class="align-top border-radius10 white-background">
 			<div class='conference-members-outer'>
 				<div id="conference-members-<%= @conference.id %>" class='conference-members-container'>
 					<% for user in @conference.users %>
@@ -10,8 +10,10 @@
 			</div>
 		</td>
 	</tr>
+	<!--
 	<tr>
-		<td id="current-user" class="align-top">
+		<td id="current-user" class="align-top border-radius10 white-background">
 		</td>
 	</tr>
+	-->
 </table>

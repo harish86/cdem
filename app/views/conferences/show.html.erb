@@ -1,9 +1,14 @@
-<table class="height100 width100 bordergray-background" style="border-spacing: 5px;">
+<table class="height100 width100 bordergray-background no-border-space">
 	<tr>
-		<td class="border-radius10 white-background">
+		<td id="conference-header-container" colspan="2" class="bold font-size14 align-center darkblue-color" style="height: 30px;">
+			<%= @conference.title || "Click here ro set title for the conference" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="">
 			<%= render :partial => "chat_table" %>
 		</td>
-		<td class="width200px lavenderblue-background border-radius10" style="border-right: 2px inset black;">
+		<td class="width200px border-radius10">
 			<%= render :partial => "conference_members" %>
 		</td>
 	</tr>
@@ -13,9 +18,11 @@
 	var authenticityToken = <%= form_authenticity_token.inspect %>;
 	conference = new Conference({
 			id: <%= @conference.id %>,
-			messageList: 'conference-messages-<%= @conference.id %>',
-			messageSender: 'conference-message-sender-<%= @conference.id %>',
+			conferenceHeader: 'conference-header-container',
+			messageListContainer: 'conference-messages-<%= @conference.id %>',
+			messageSenderContainer: 'conference-message-sender-<%= @conference.id %>',
 			messageDeliverUrl: '<%= conference_messages_path(@conference) %>',
+			title: '<%= @conference.title %>',
 			userId: <%= current_user.id %>
 		});
 		

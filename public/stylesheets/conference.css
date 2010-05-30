@@ -8,6 +8,12 @@
   vertical-align: top;
 }
 
+.conference-title-input input
+{
+  width: 95%;
+  border: none;
+}
+
 #chat-table #messages-list
 {
 }
@@ -34,6 +40,8 @@
 {
   width: 100%;
   height: 50px;
+  border: none;
+  background:none repeat scroll 0 0 transparent;
 }
 
 /* --------------- Messages ---------------*/

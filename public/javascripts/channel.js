@@ -99,7 +99,7 @@ var Channel = Class.create({
   },
   
   newClientWindow: function(conferenceId) {
-    windowManager.openWindowByConferenceId(this.conferenceUrl + conferenceId, this.conferenceId);
+    windowManager.openWindowByConferenceId(this.conferenceUrl + conferenceId, conferenceId);
   },
   
   setChannel: function(conferenceId) {
@@ -111,23 +111,21 @@ var Channel = Class.create({
   
   notifyConference: function(conferenceId, messages) {
     try{
-    var conferenceNotifier = this.conferenceNotifiers.get(conferenceId);
+      var conferenceNotifier = this.conferenceNotifiers.get(conferenceId);
     }catch(e){alert(e);}
-    if(conferenceNotifier) {
-      conferenceNotifier.update({
+    
+    options = {
           conferenceId: conferenceId,
           messages: messages,
           container: this.notifiersContainer,
           channel: this
-        })
+        };
+        
+    if(conferenceNotifier) {
+      conferenceNotifier.update(options)
     }
     else {
-      conferenceNotifier = new ConferenceNotifier({
-          conferenceId: conferenceId,
-          messages: messages,
-          container: this.notifiersContainer,
-          channel: this
-        });
+      conferenceNotifier = new ConferenceNotifier(options);
       this.conferenceNotifiers.set(conferenceId, conferenceNotifier);
     }
     conferenceNotifier.show();

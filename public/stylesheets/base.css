@@ -117,7 +117,17 @@
 
 .bordergray-background
 {
-  background-color: LightSlateGray;
+  background-color: LightSteelBlue;
+}
+
+.lightblue-background
+{
+  background-color: aliceblue;
+}
+
+.darkblue-background
+{
+  background-color: DarkSlateBlue;
 }
 /*--------------------------------*/
 
@@ -131,6 +141,11 @@
 .lavenderblue-color, .lavenderblue-color-link
 {
   color: lavender;
+}
+
+.darkblue-color
+{
+  color: DarkSlateBlue;
 }
 
 .white-color, .white-color-link
@@ -191,10 +206,20 @@
 /*--------------------------------*/
 
 /*------------ Borders -------------*/
+.no-border
+{
+  border: none;
+}
+
 .no-border-space
 {
   border-spacing: 0;
   border-collapse: collapse;
+}
+
+.border-spacing3
+{
+  border-spacing: 3px;
 }
 
 /* Solid border */
