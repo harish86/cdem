@@ -12,6 +12,8 @@
 {
   width: 95%;
   border: none;
+  font-size: 12px;
+  height: 18px;
 }
 
 #chat-table #messages-list
@@ -54,4 +56,13 @@
 .message-block .message-sender
 {
   font-weight: bold;
+}
+
+/* --------------- Members ---------------*/
+.conference-member
+{
+  color:lightcoral;
+  font-size:12px;
+  font-weight:bold;
+  padding:3px;
 }

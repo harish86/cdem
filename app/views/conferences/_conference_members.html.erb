@@ -2,9 +2,12 @@
 	<tr>
 		<td id="members-list" class="align-top border-radius10 white-background">
 			<div class='conference-members-outer'>
-				<div id="conference-members-<%= @conference.id %>" class='conference-members-container'>
-					<% for user in @conference.users %>
-						<%= user.name %> <br />
+				<div id="conference-members-<%= @conference.id %>" class='conference-members-container padding5 bold'>
+					<div class="font-size12 underline darkblue-color">Members in this conference</div>
+					<% for member in @conference.users %>
+						<div id="conference-member-<%= member.id %>" class='conference-member'>
+							<%= member.name %>
+						</div>
 					<% end %>
 				</div>
 			</div>

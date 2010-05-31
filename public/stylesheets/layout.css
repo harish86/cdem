@@ -30,8 +30,31 @@ body
   left: 0;
   width: 100%;
   z-index:1;
+  height: 0px;
+  overflow: visible;
 }
 
+#layout-footer .left-contents, #layout-footer .middle-contents, #layout-footer .right-contents
+{
+  position: absolute;
+  bottom:0;
+}
+
+#layout-footer .left-contents
+{
+  left: 0;
+}
+
+#layout-footer .middle-contents
+{
+  left: 0;
+  width: 100%;
+}
+
+#layout-footer .right-contents
+{
+  right: 0;
+}
 /*----------------- Page ----------------*/
 #page-header, #page-body, #page-footer
 {
