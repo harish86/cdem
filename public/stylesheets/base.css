@@ -26,7 +26,7 @@ button.menu-button
 
 button.close-button
 {
-  background-color: red;
+  background-color: orange;
   color: white;
   font-weight: bold;
   font-size: 10px;
@@ -37,7 +37,7 @@ button.close-button
 
 button.close-button:hover
 {
-  background-color: orange;
+  background-color: red;
 }
 
 /*------------ Floats -------------*/
