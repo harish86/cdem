@@ -1,8 +1,10 @@
-<div id="login_logout_links">
+<div id="login_logout_links" class="font-size14 bordergray-color blue-color-link">
 	<% if logged_in? %>
-	  Logged in as <%= current_user.login %> (<%= link_to "Logout", :controller => "/account", :action => "logout" %>)
+	  Logged in as <%= current_user.login %> (<%= link_to "Logout", {:controller => "/account", :action => "logout"}, :class => "underline" %>)
 	  
+	  <!--
 	  <br/>(<%= link_to "Reset password", :controller => "/account", :action => "reset_password" %>)
+	  -->
 	<% end %>
 </div>
 

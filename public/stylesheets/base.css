@@ -133,7 +133,7 @@
 
 /*------------ Colors -------------*/
 /* Font-sizes */
-.blue-color, .blue-color-link
+.blue-color, .blue-color-link a
 {
   color: LightSlateBlue;
 }
@@ -161,6 +161,11 @@
 .bordergray-color, .bordergray-color-link
 {
   color: LightSlateGray;
+}
+
+.redish-color
+{
+  color: brown;
 }
 /*--------------------------------*/
 
