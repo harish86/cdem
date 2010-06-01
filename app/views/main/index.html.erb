@@ -1,8 +1,24 @@
-<%= link_to "Find Friends", :controller=>"users", :action=>"search" %>
+<% link_to "Find Friends", :controller=>"users", :action=>"search" %>
+<%= link_to_function "Find friends", "$('find-friends').show();" %>
 
 <div id="main-page">
 	<table class="width100" style="table-layout:fixed;">
 		<tr>
+			<td id="find-friends" style="display: none;">
+				<div id="find-friends-outer" class="border-radius-top5" style="border: 1px solid black;">
+					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">
+						<%= link_to_function "(X)", "$('find-friends').hide();", :class => "float-right font-size10" %>
+						Search friends
+					</div>
+					<div id="search-container" class="font-size14 height300px">
+						<div id="search-form" class="padding5">
+							<%= render :partial => "search_friends" %>
+						</div>
+						<div id="search-results">
+						</div>
+					</div>
+				</div>
+			</td>
 			<td id='contacts' class="align-top">
 				<div id="contacts-outer" class="border-radius-top5" style="border: 1px solid black;">
 					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Contacts</div>

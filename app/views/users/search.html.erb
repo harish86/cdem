@@ -1,30 +1,5 @@
 <%= render :partial=>"search_form" %>
 
 <% if params[:search_string] %>
-	<% if @users.any? %>
-		<%= @users.size %> results found <br />
-		<table>
-			<tr>
-				<th>Login</th>
-				<th>Email</th>
-				<th>Friedship Status</th>
-			</tr>
-			<% for user in @users %>
-				<tr>
-					<td><%= user.login %></td>
-					<td><%= user.email %></td>
-					<td>
-						<% if current_user.is_friend?(user.id)==0 %>
-							<%= link_to "Add to contacts", :action=>"add_to_contacts", :friend_id=>user.id %>
-						<% else %>
-							<%= current_user.friendship_status_message(user.id) %>
-						<% end %>
-					</td>
-					
-				</tr>
-			<% end %>
-		</table>
-	<% else %>
-		No match found.
-	<% end %>
+	<%= render :partial => "search_results", :locals => {:users => @users} %>
 <% end %>

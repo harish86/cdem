@@ -6,6 +6,15 @@ class UsersController < ApplicationController
       search_string = '%' + params[:search_string] + '%'
       @users = User.find(:all, :conditions=>["not id = ? and (login like ? or email like ?)", current_user.id, search_string, search_string])
     end
+    
+    respond_to do |format|
+      format.html {}
+      format.js {
+          render :update do |page|
+            page.replace_html "search-results", :partial => "search_results", :locals => {:users => @users}
+          end
+        }
+    end
   end
   
   def add_to_contacts

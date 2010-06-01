@@ -1,0 +1,8 @@
+<% form_remote_tag :url=>user_search_path, :loading => "$('search-friends-spinner').show();", :complete => "$('search-friends-spinner').hide();", :method => "get" do %>
+	<%= text_field_tag :search_string, "", :class => "width100" %>
+	<%= submit_tag "Search", :class => "float-right" %>
+	
+	<%= image_tag "spinner.gif", :id => "search-friends-spinner", :class => "float-right", :style => "display:none;" %>
+	
+	<div class="clear-height"></div>
+<% end %>
