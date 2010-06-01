@@ -99,7 +99,19 @@ var WindowManager = Class.create({
     }
     
     return false;
+  },
+  
+  close: function() {
+    for(var i=0; i < this.clientWindows.length; i++) {
+      this.clientWindows[i].close();
+    }
   }
 });
 
 WindowManager.objects = new Array;
+Window.closeAll = function() {
+  for(var i=0; i < WindowManager.objects.length; i++) {
+    WindowManager.objects[i].close();
+  }
+}
+window.onbeforeunload = Window.closeAll;

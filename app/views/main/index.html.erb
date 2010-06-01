@@ -63,7 +63,7 @@
 				<script>
 					var userWindow<%= contact.id %> = null;
 				</script>
-				<td><%= link_to_function contact.friend.login, "windowManager.openWindowByUserIds('#{new_conference_path(:contact_id=>contact.id)}', [#{current_user.id}, #{contact.friend.id}]);" %></td>
+				<td><%= link_to_function contact.friend.login, "windowManager.openWindowByUserIds('#{new_conference_path(:user_id=>contact.friend.id)}', [#{current_user.id}, #{contact.friend.id}]);" %></td>
 				<td><%= contact.friend.email %></td>
 				<td>
 					<% if contact.pending? %>

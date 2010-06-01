@@ -6,10 +6,11 @@ class ConferencesController < ApplicationController
 
   def new
     conferences = current_user.conferences
-    contact = Contact.find(params[:contact_id])
+    #contact = Contact.find(params[:contact_id])
+    user = User.find(params[:user_id])
     @conference = nil
     for conference in conferences
-      if conference.conference_users.size == 2 and conference.conference_users.find_by_user_id(contact.friend_id)
+      if conference.conference_users.size == 2 and conference.conference_users.find_by_user_id(user.id)
         @conference = conference
         break
       end
@@ -18,7 +19,7 @@ class ConferencesController < ApplicationController
     if @conference.nil?
       @conference = current_user.initiated_conferences.create
       @conference.users << current_user
-      @conference.users << contact.friend
+      @conference.users << user
     end
     
     redirect_to conference_path(@conference)

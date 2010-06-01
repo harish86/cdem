@@ -46,7 +46,7 @@ function textToHtml(text) {
   return text.gsub(' ', '&nbsp;').gsub('\n', '<br />');
 }
 
-function objectToAttributes(attributes) {
+function objectToHtmlProperties(attributes) {
   var attributeString = "";
   var sp = "";
   for(attribute in attributes) {

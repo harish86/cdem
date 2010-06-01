@@ -79,8 +79,15 @@ var Contacts = Class.create({
         this.list[this.list.length] = contact;
       }
       
-      this.contactsContainer.innerHTML += contact.contactHtml();
+      this.contactsContainer.insert({ bottom:contact.contactHtml() })
+      //function(){windowManager.openWindowByUserIds(this.channel.conferenceUrl, [contact.id, this.channel.user.id])}
+      contact.contactDomElement().observe('click', this.click.bindAsEventListener(this, i));
     }
+  },
+  
+  click: function(event, i) {
+    contact = this.list[i];
+    windowManager.openWindowByUserIds(this.channel.conferenceUrl + "new?user_id=" + contact.id, [contact.id, this.channel.user.id]);
   },
   
   findById: function(id) {

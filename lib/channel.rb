@@ -39,7 +39,7 @@ module Channel
       output = []
       for contact in self.contacts.find_all_accepted.find(:all, :order=>"status asc, initiator asc, created_at asc", :include => [:friend])
         output << {
-            :id               =>  contact.id,
+            :id               =>  contact.friend.id,
             :name             =>  contact.friend.login,
             :email            =>  contact.friend.email,
             :onlineStatus     =>  contact.friend.is_online?

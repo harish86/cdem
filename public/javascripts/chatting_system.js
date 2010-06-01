@@ -13,6 +13,10 @@ var User = Class.create({
     this.onlineStatus = options.onlineStatus;
   },
   
+  contactDomElement: function() {
+    return document.getElementById(this.contactHtmlAttributes()['id']);
+  },
+  
   contactHtmlAttributes: function() {
     htmlAttributes = {
         "id":       'contact-' + this.id,
@@ -20,13 +24,12 @@ var User = Class.create({
         "onclick":  ''
       };
     
-    return objectToAttributes(htmlAttributes);
-    //return "id='contact-" + this.id + "' class='contact " + this.onlineStatus + "'";
+    return htmlAttributes;
   },
   
   contactHtml: function() {
     var html = "";
-    html += "<div " + this.contactHtmlAttributes() + ">";
+    html += "<div " + objectToHtmlProperties(this.contactHtmlAttributes()) + ">";
     html += this.name;
     html += "</div>";
     
