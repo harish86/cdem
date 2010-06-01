@@ -240,7 +240,13 @@
   -moz-border-radius: 5px;
 }
 
-.borderradius10, .border-radius10
+.border-radius-top5
+{
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+}
+
+.border-radius10
 {
   -moz-border-radius: 10px;
 }
@@ -292,6 +298,21 @@
 .height75
 {
   height: 75%;
+}
+
+.height100px
+{
+  height: 100px;
+}
+
+.height300px
+{
+  height: 300px;
+}
+
+.height500px
+{
+  height: 500px;
 }
 /* ----------------------- */
 

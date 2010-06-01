@@ -45,3 +45,14 @@ function sendRequest(url, parameters, responseParser) {
 function textToHtml(text) {
   return text.gsub(' ', '&nbsp;').gsub('\n', '<br />');
 }
+
+function objectToAttributes(attributes) {
+  var attributeString = "";
+  var sp = "";
+  for(attribute in attributes) {
+    attributeString += sp + attribute + "='" + attributes[attribute] + "'";
+    sp = " ";
+  }
+  
+  return attributeString;
+}

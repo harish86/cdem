@@ -52,11 +52,51 @@ var ResponseManager = Class.create({
           this.channel.notifyConference(conferenceId, json.conferenceUpdates[conferenceId].messages);
       }
     }
+    
+    try{
+    this.channel.contacts.updateList(json.contactUpdates);
+    }catch(e){alert(e);}
   }
-})
+});
+
+var Contacts = Class.create({
+  initialize: function(options) {
+    this.list = options.contacts || new Array;
+    this.contactsContainer = options.contactsContainer;
+    this.channel = options.channel;
+  },
+  
+  updateList: function(contactsList) {
+    this.contactsContainer.innerHTML = "";
+    
+    for(var i=0; i<contactsList.length; i++) {
+      var contactDetails = contactsList[i];
+      var contact = this.findById(contactDetails.id);
+      if(contact)
+        contact.update(contactDetails);
+      else {
+        contact = new User(contactDetails);
+        this.list[this.list.length] = contact;
+      }
+      
+      this.contactsContainer.innerHTML += contact.contactHtml();
+    }
+  },
+  
+  findById: function(id) {
+    for(var i = 0; i < this.list.length; i++) {
+      if(this.list[i].id == id)
+        return this.list[i];
+    }
+    
+    return false;
+  }
+});
 
 var Channel = Class.create({
   initialize: function(options) {
+    options.channel = this;
+    
     this.id = options.id;
     this.channelUrl = options.channelUrl;
     this.conferenceUrl = options.conferenceUrl;
@@ -65,8 +105,11 @@ var Channel = Class.create({
     
     this.clientWindows = new Hash;
     this.conferenceNotifiers = new Hash;
+    options.contactsContainer = document.getElementById(options.contactsContainer);
+    this.contacts = new Contacts(options);
     this.user = options.user;
-    this.notifiersContainer = options.notifiersContainer;
+    this.notifiersContainer = document.getElementById(options.notifiersContainer);
+    this.bookmarksContainer = document.getElementById(options.bookmarksContainer);
     this.communicationInterval = options.communicationInterval || 5000;
     this.communicationTimeout = null;
     
@@ -79,7 +122,8 @@ var Channel = Class.create({
     this.instructionsManager = new InstructionsManager({ channel:this });
     this.responseManager = new ResponseManager({ channel:this });
     
-    this.communicationTimeout = window.setTimeout(this.communicate.bind(this), this.communicationInterval);
+    this.communicate();
+    //this.communicationTimeout = window.setTimeout(this.communicate.bind(this), this.communicationInterval);
   },
   
   communicate: function() {
@@ -110,10 +154,7 @@ var Channel = Class.create({
   },
   
   notifyConference: function(conferenceId, messages) {
-    try{
-      var conferenceNotifier = this.conferenceNotifiers.get(conferenceId);
-    }catch(e){alert(e);}
-    
+    var conferenceNotifier = this.conferenceNotifiers.get(conferenceId);
     options = {
           conferenceId: conferenceId,
           messages: messages,

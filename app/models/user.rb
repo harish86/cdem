@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
+    self.logged_in                 = false
     save(false)
   end
   
@@ -95,7 +96,7 @@ class User < ActiveRecord::Base
   #--------------------------------- Custom Methods --------------------------------
   def is_online?
     return false if self.last_access_time.nil?
-    self.last_access_time >= 5.seconds.ago
+    self.logged_in and self.last_access_time >= 10.seconds.ago
   end
   
   def is_friend?(friend_id)

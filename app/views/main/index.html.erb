@@ -1,5 +1,35 @@
 <%= link_to "Find Friends", :controller=>"users", :action=>"search" %>
 
+<div id="main-page">
+	<table class="width100" style="table-layout:fixed;">
+		<tr>
+			<td id='contacts' class="align-top">
+				<div id="contacts-outer" class="border-radius-top5" style="border: 1px solid black;">
+					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Contacts</div>
+					<div id="contacts-list" class="height300px">
+					</div>
+				</div>
+			</td>
+			<td id='conferences' class="align-top">
+				<div id="conferences-outer" class="border-radius-top5" style="border: 1px solid black;">
+					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Recent conversations</div>
+					<div id="conference-list" class="font-size14 height300px">
+						<%= render :partial => "conference_list", :locals => {:conferences => current_user.conferences} %>
+					</div>
+				</div>
+			</td>
+			<td id='bookmarks' class="align-top">
+				<div id="bookmarks-outer" class="border-radius-top5" style="border: 1px solid black;">
+					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Bookmarked conversations</div>
+					<div id="bookmarks-list" class="font-size14 height300px">
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
 <br />
 <br />
 
@@ -59,8 +89,10 @@
 			id: 0,
 			channelUrl: '<%= channel_path %>',
 			conferenceUrl: '<%= conferences_path %>',
-			notifiersContainer: document.getElementById('layout-footer-right-contents'),
-			communicationInterval: 2000,
+			contactsContainer: 'contacts-list',
+			bookmarksContainer: 'bookmarks',
+			notifiersContainer: 'layout-footer-right-contents',
+			communicationInterval: 3000,
 			user: user
 		});
 <% end %>

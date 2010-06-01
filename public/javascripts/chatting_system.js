@@ -2,6 +2,7 @@ var User = Class.create({
   initialize: function(options) {
     this.id = options.id;
     this.name = options.name;
+    this.email = options.email;
     this.onlineStatus = options.onlineStatus;
     
     User.objects[User.objects.length] = this;
@@ -10,6 +11,26 @@ var User = Class.create({
   update: function(options) {
     this.name = options.name;
     this.onlineStatus = options.onlineStatus;
+  },
+  
+  contactHtmlAttributes: function() {
+    htmlAttributes = {
+        "id":       'contact-' + this.id,
+        "class":    'contact padding5 lightblue-background ' + this.onlineStatus,
+        "onclick":  ''
+      };
+    
+    return objectToAttributes(htmlAttributes);
+    //return "id='contact-" + this.id + "' class='contact " + this.onlineStatus + "'";
+  },
+  
+  contactHtml: function() {
+    var html = "";
+    html += "<div " + this.contactHtmlAttributes() + ">";
+    html += this.name;
+    html += "</div>";
+    
+    return html;
   }
 })
 

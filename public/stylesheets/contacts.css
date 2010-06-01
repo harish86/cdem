@@ -1,0 +1,20 @@
+#contacts
+{
+}
+
+.contact
+{
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#contacts .false
+{
+  color: orange;
+}
+
+#contacts .true
+{
+  color: green;
+  font-weight: bold;
+}
