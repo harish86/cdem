@@ -9,6 +9,37 @@
     clear:both;
 }
 
+button
+{
+  border: none;
+  cursor: pointer;
+}
+
+button.menu-button
+{
+  background-image: url(/images/site-images/menu-button-bg.gif);
+  background-position: bottom;
+  font-weight: bold;
+  color: white;
+  padding: 2px 8px 2px 8px;
+}
+
+button.close-button
+{
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+}
+
+button.close-button:hover
+{
+  background-color: orange;
+}
+
 /*------------ Floats -------------*/
 
 .float-left

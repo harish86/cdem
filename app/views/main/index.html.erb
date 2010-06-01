@@ -1,5 +1,10 @@
-<% link_to "Find Friends", :controller=>"users", :action=>"search" %>
-<%= link_to_function "Find friends", "$('find-friends').show();" %>
+<div id="menu-buttons">
+	<button id="find-friends-button" class="border-radius5 menu-button enabled" onclick="showElement('find-friends'); $('find-friends-button').setAttribute('disabled', 'disabled');">
+		Find friends
+	</button>
+	
+	<div class="clear-height"></div>
+</div>
 
 <div id="main-page">
 	<table class="width100" style="table-layout:fixed; border-spacing: 5px;">
@@ -7,7 +12,9 @@
 			<td id="find-friends" style="display: none;">
 				<div id="find-friends-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
 					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">
-						<%= link_to_function "(X)", "$('find-friends').hide();", :class => "float-right font-size12 redish-color bold" %>
+						<button class="border-radius10 float-right close-button enabled" onclick="hideElement('find-friends'); $('find-friends-button').removeAttribute('disabled');" style="padding: 0;">
+							X
+						</button>
 						Search friends
 					</div>
 					<div id="search-container" class="font-size14 height400px">

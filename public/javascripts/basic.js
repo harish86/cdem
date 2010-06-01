@@ -56,3 +56,13 @@ function objectToHtmlProperties(attributes) {
   
   return attributeString;
 }
+
+function showElement(id)
+{
+  document.getElementById(id).appear(0.5);
+}
+
+function hideElement(id)
+{
+  document.getElementById(id).fade(0.5);
+}

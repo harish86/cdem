@@ -15,4 +15,10 @@
 	  DD_roundies.addRule('.border-radius-top5', '5px 5px 0px 0px', true);
 	  DD_roundies.addRule('.border-radius10', '10px', true);
   <!--  ------------------------------------   -->
+  
+  var enabledElements = document.getElementsByClassName('enabled');
+  for(var i=0; i<enabledElements.length; i++)
+  {
+  	enabledElements[i].removeAttribute('disabled');
+  }
 </script>
