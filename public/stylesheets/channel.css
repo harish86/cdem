@@ -2,3 +2,9 @@
 {
   border-bottom: 1px solid darkgray;
 }
+
+.main-blocks
+{
+  background-image: url("/images/site-images/body-bg.gif");
+  background-position: bottom;
+}

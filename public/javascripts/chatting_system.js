@@ -21,6 +21,7 @@ var User = Class.create({
     htmlAttributes = {
         "id":       'contact-' + this.id,
         "class":    'contact padding5 lightblue-background ' + this.onlineStatus,
+        "style":    'border-bottom: 1px solid darkgray;',
         "onclick":  ''
       };
     
