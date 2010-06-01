@@ -21,6 +21,8 @@ body
   height: 100%;
   z-index:0;
   overflow-y:auto;
+  background-image: url(/images/site-images/body-bg.gif);
+  background-repeat: repeat-x;
 }
 
 #layout-footer

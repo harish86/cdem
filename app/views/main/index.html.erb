@@ -2,15 +2,15 @@
 <%= link_to_function "Find friends", "$('find-friends').show();" %>
 
 <div id="main-page">
-	<table class="width100" style="table-layout:fixed;">
+	<table class="width100" style="table-layout:fixed; border-spacing: 5px;">
 		<tr>
 			<td id="find-friends" style="display: none;">
-				<div id="find-friends-outer" class="border-radius-top5" style="border: 1px solid black;">
+				<div id="find-friends-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
 					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">
 						<%= link_to_function "(X)", "$('find-friends').hide();", :class => "float-right font-size10" %>
 						Search friends
 					</div>
-					<div id="search-container" class="font-size14 height300px">
+					<div id="search-container" class="font-size14 height400px">
 						<div id="search-form" class="padding5">
 							<%= render :partial => "search_friends" %>
 						</div>
@@ -20,24 +20,24 @@
 				</div>
 			</td>
 			<td id='contacts' class="align-top">
-				<div id="contacts-outer" class="border-radius-top5" style="border: 1px solid black;">
+				<div id="contacts-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
 					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Contacts</div>
-					<div id="contacts-list" class="height300px">
+					<div id="contacts-list" class="height400px">
 					</div>
 				</div>
 			</td>
 			<td id='conferences' class="align-top">
-				<div id="conferences-outer" class="border-radius-top5" style="border: 1px solid black;">
+				<div id="conferences-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
 					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Recent conversations</div>
-					<div id="conference-list" class="font-size14 height300px">
+					<div id="conference-list" class="font-size14 height400px">
 						<%= render :partial => "conference_list", :locals => {:conferences => current_user.conferences} %>
 					</div>
 				</div>
 			</td>
 			<td id='bookmarks' class="align-top">
-				<div id="bookmarks-outer" class="border-radius-top5" style="border: 1px solid black;">
+				<div id="bookmarks-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
 					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Bookmarked conversations</div>
-					<div id="bookmarks-list" class="font-size14 height300px">
+					<div id="bookmarks-list" class="font-size14 height400px">
 					</div>
 				</div>
 			</td>
@@ -46,6 +46,7 @@
 </div>
 
 
+<!--
 <br />
 <br />
 
@@ -90,6 +91,7 @@
 
 <div id="contacts-list">
 </div>
+-->
 
 <% content_for :javascripts do %>
 	var authenticityToken = <%= form_authenticity_token.inspect %>;
