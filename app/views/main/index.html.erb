@@ -14,13 +14,13 @@
 		<tr>
 			<td id="find-friends" style="display: none;">
 				<div id="find-friends-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
-					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">
+					<div class="main-blocks-header darkblue-color lavenderblue-background border-radius-top5">
 						<button class="border-radius10 float-right close-button enabled" onclick="hideElement('find-friends'); $('find-friends-button').removeAttribute('disabled');" style="padding: 0;">
 							X
 						</button>
 						Search friends
 					</div>
-					<div id="search-container" class="font-size14 height400px main-blocks">
+					<div id="search-container" class="main-blocks-header font-size14 height400px main-blocks">
 						<div id="search-form" class="padding5">
 							<%= render :partial => "search_friends" %>
 						</div>
@@ -31,14 +31,14 @@
 			</td>
 			<td id='contacts' class="align-top">
 				<div id="contacts-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
-					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Contacts</div>
+					<div class="main-blocks-header darkblue-color lavenderblue-background border-radius-top5">Contacts</div>
 					<div id="contacts-list" class="height400px main-blocks">
 					</div>
 				</div>
 			</td>
 			<td id='conferences' class="align-top">
 				<div id="conferences-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
-					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Recent conversations</div>
+					<div class="main-blocks-header darkblue-color lavenderblue-background border-radius-top5">Recent conversations</div>
 					<div id="conference-list" class="font-size14 height400px main-blocks">
 						<%= render :partial => "conference_list", :locals => {:conferences => current_user.conferences} %>
 					</div>
@@ -46,7 +46,7 @@
 			</td>
 			<td id='bookmarks' class="align-top">
 				<div id="bookmarks-outer" class="border-radius-top5 white-background" style="border: 1px solid black;">
-					<div class="font-size14 align-center bold darkblue-color lavenderblue-background padding5 border-radius-top5">Bookmarked conversations</div>
+					<div class="main-blocks-header darkblue-color lavenderblue-background border-radius-top5">Bookmarked conversations</div>
 					<div id="bookmarks-list" class="font-size14 height400px main-blocks">
 					</div>
 				</div>

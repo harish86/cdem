@@ -12,7 +12,7 @@
 button
 {
   cursor: pointer;
-  text-shadow: 1px 1px 0 darkgray;
+  text-shadow: 1px 1px 2px darkgray;
 }
 
 .disabled, button[disabled]
@@ -26,6 +26,7 @@ button.menu-button, .page-button
   background-position: bottom;
   font-weight: bold;
   color: white;
+  text-shadow: 1px 1px 2px darkgray;
 }
 
 button.close-button
