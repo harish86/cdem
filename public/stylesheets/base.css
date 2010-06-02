@@ -15,6 +15,11 @@ button
   text-shadow: 1px 1px 2px darkgray;
 }
 
+button::-moz-focus-inner, input::-moz-focus-inner
+{
+  border: 0;
+}
+
 .disabled, button[disabled]
 {
   opacity:0.45;
@@ -22,6 +27,7 @@ button
 
 button.menu-button, .page-button
 {
+  cursor: pointer;
   background-image: url(/images/site-images/menu-button-bg.gif);
   background-position: bottom;
   font-weight: bold;
