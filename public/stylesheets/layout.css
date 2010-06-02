@@ -58,6 +58,15 @@ body
 {
   right: 0;
 }
+
+#footer-title
+{
+  text-align: center;
+  color: gray;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 2px 2px 2px darkgray;
+}
 /*----------------- Page ----------------*/
 #page-header, #page-body, #page-footer
 {
