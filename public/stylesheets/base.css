@@ -11,8 +11,8 @@
 
 button
 {
-  border: none;
   cursor: pointer;
+  text-shadow: 1px 1px 0 darkgray;
 }
 
 .disabled, button[disabled]
@@ -20,7 +20,7 @@ button
   opacity:0.45;
 }
 
-button.menu-button
+button.menu-button, .page-button
 {
   background-image: url(/images/site-images/menu-button-bg.gif);
   background-position: bottom;
@@ -30,6 +30,7 @@ button.menu-button
 
 button.close-button
 {
+  border: none;
   background-color: orange;
   color: white;
   font-weight: bold;

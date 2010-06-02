@@ -54,8 +54,8 @@ var ResponseManager = Class.create({
     }
     
     try{
-    this.channel.contacts.updateList(json.contactUpdates);
-    }catch(e){alert(e);}
+      this.channel.contacts.updateList(json.contactUpdates);
+    }catch(e){}
   }
 });
 
