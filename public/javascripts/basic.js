@@ -59,10 +59,10 @@ function objectToHtmlProperties(attributes) {
 
 function showElement(id)
 {
-  document.getElementById(id).appear(0.5);
+  document.getElementById(id).appear({ duration: 0.5 });
 }
 
 function hideElement(id)
 {
-  document.getElementById(id).fade(0.5);
+  document.getElementById(id).fade({ duration: 0.5 });
 }
