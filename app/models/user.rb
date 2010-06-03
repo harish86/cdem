@@ -2,7 +2,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   include Authentication
   # Virtual attribute for the unencrypted password
-  attr_accessor :password
+  attr_accessor :password, :selected
   
   has_many :contacts
   has_many :friends, :through=>:contacts, :class_name=>"User", :foreign_key=>"contact_id"
@@ -112,13 +112,15 @@ class User < ActiveRecord::Base
     end
   end
   
-  def add_friend(friend_id)
+  def add_friend(friend_id, message)
     if friend_id != self.id
+      friend = User.find(friend_id)
+      
       if self.is_friend?(friend_id) == 0
-        friend = User.find(friend_id)
         contact = self.contacts.new
         contact.initiator = true
         contact.friend = friend
+        contact.message = message
         contact.save
       end
       
@@ -126,6 +128,7 @@ class User < ActiveRecord::Base
         contact = friend.contacts.new
         contact.initiator = false
         contact.friend = self
+        contact.message = message
         contact.save
       end
     end

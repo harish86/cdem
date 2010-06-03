@@ -1,26 +1,30 @@
 <% if users.any? %>
-	<%= users.size %> results found <br />
-	<table>
-		<tr>
-			<th>Login</th>
-			<th>Email</th>
-			<th>Friedship Status</th>
-		</tr>
-		<% for user in users %>
-			<tr>
-				<td><%= user.login %></td>
-				<td><%= user.email %></td>
-				<td>
-					<% if current_user.is_friend?(user.id)==0 %>
-						<%= link_to "Add to contacts", :action=>"add_to_contacts", :friend_id=>user.id %>
-					<% else %>
-						<%= current_user.friendship_status_message(user.id) %>
-					<% end %>
-				</td>
-				
+	<div class="underline"><%= users.size %> results found <br /></div>
+	<% form_remote_for :users, :url => {:controller => "users", :action=>"add_to_contacts"}, :loading => "$('search-friends-spinner').show();", :complete => "$('search-friends-spinner').hide();" do |f| %>
+		<table class="font-size12 width100 no-border-space">
+			<tr style="background-color: lightgrey;">
+				<th class="align-left" style="width:10px;"><%= check_box :check, :all, :onclick => "checkAllBoxes({checkAll: 'check_all', selectBox: 'select_box'}); enableIfSelectedAny({enableElements: 'enable-disable-elements', selectBox: 'select_box'});" %></th>
+				<th class="align-left underline">Name</th>
 			</tr>
-		<% end %>
-	</table>
+			<% for user in users %>
+				<% fields_for "users[]", user do |user_fields| %>
+					<tr>
+						<td class="align-left"><%= user_fields.check_box :selected, :onclick => "updateCheckAll({checkAll: 'check_all', selectBox: 'select_box'}); enableIfSelectedAny({enableElements: 'enable-disable-elements', selectBox: 'select_box'});", :class => "select_box" %></td>
+						<td class="align-left"><%= user.name %></td>
+					</tr>
+				<% end %>
+			<% end %>
+		</table>
+	
+		<div id="message-submit-box" class="padding5" style="width: 95%;">
+			<%= label_tag "Enter your message below" %>
+			<%= text_area_tag :message, '', :class=>"enable-disable-elements width100 font-size12", :disabled => "disabled" %>
+			
+			<%= submit_tag "Add to contact", :class => "enable-disable-elements page-button border-radius5", :disabled => "disabled", :id => "submit-button" %>
+			
+			<%= image_tag "spinner.gif", :id => "add-to-contacts-spinner", :class => "float-right", :style => "display:none;" %>
+		</div>
+	<% end %>
 <% else %>
 	No match found.
 <% end %>

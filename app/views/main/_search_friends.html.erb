@@ -1,4 +1,4 @@
-<% form_remote_tag :url=>user_search_path, :loading => "$('search-friends-spinner').show();", :complete => "$('search-friends-spinner').hide();", :method => "get" do %>
+<% form_remote_tag :url=>user_search_path, :html => {:class=>"margin0"}, :loading => "$('search-friends-spinner').show();", :complete => "$('search-friends-spinner').hide();", :method => "get" do %>
 	<%= text_field_tag :search_string, "", :class => "width100", :style => "border: 1px solid black;" %>
 	<%= submit_tag "Search", :class => "float-right page-button border-radius5" %>
 	

@@ -20,11 +20,11 @@
 						</button>
 						Search friends
 					</div>
-					<div id="search-container" class="font-size14 height400px main-blocks">
+					<div id="search-container" class="height400px main-blocks">
 						<div id="search-form" class="padding5">
 							<%= render :partial => "search_friends" %>
 						</div>
-						<div id="search-results">
+						<div id="search-results" class="font-size12 padding5">
 						</div>
 					</div>
 				</div>
@@ -54,54 +54,6 @@
 		</tr>
 	</table>
 </div>
-
-
-<!--
-<br />
-<br />
-
-<% if current_user.friends.any? %>
-	<%= current_user.friends.size %> friends in contacts list <br />
-	<table>
-		<tr>
-			<th>Login</th>
-			<th>Email</th>
-			<th>Friendship status</th>
-			<th>Availability status</th>
-		</tr>
-		<% for contact in current_user.contacts.find(:all, :order=>"status asc, initiator asc, created_at asc") %>
-			<tr>
-				<script>
-					var userWindow<%= contact.id %> = null;
-				</script>
-				<td><%= link_to_function contact.friend.login, "windowManager.openWindowByUserIds('#{new_conference_path(:user_id=>contact.friend.id)}', [#{current_user.id}, #{contact.friend.id}]);" %></td>
-				<td><%= contact.friend.email %></td>
-				<td>
-					<% if contact.pending? %>
-						<% if contact.initiator %>
-							You have requested
-						<% else %>
-							<%= link_to "Accept this contact", accept_contact_users_path(:contact_id=>contact.id) %>
-						<% end %>
-					<% else %>
-						Accepted
-					<% end %>
-				</td>
-				<td>
-					<%= contact.friend.is_online? ? "Online" : "Offline" %>
-				</td>
-			</tr>
-		<% end %>
-	</table>
-<% else %>
-	No match found.
-<% end %>
-
-<h4>Friends available for chat</h4>
-
-<div id="contacts-list">
-</div>
--->
 
 <% content_for :javascripts do %>
 	var authenticityToken = <%= form_authenticity_token.inspect %>;

@@ -18,9 +18,20 @@ class UsersController < ApplicationController
   end
   
   def add_to_contacts
-    current_user.add_friend(params[:friend_id])
+    params[:users].each do |id, selection|
+      if(selection[:selected] == "1")
+        current_user.add_friend(id, params[:message])
+      end
+    end
     
-    redirect_to :controller=>"main", :action=>"index"
+    respond_to do |format|
+      format.html {redirect_to :controller=>"main", :action=>"index"}
+      format.js {
+          render :update do |page|
+            page.replace_html "search-results", "Request sent and is waiting for the friends to accept !!"
+          end
+        }
+    end
   end
   
   def accept_contact
