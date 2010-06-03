@@ -6,11 +6,19 @@
 .main-blocks
 {
   background-color: WhiteSmoke;
+  overflow-y: auto;
 }
 
 .main-blocks-header
 {
   text-shadow: 2px 2px 2px darkgray;
+  
+  -moz-box-shadow: 0 2px 4px gray;
+  -webkit-box-shadow: 0 2px 4px gray;
+  zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='gray', Direction=90, Strength=2);
+  
+  position: relative;
   font-size: 14px;
   text-align: center;
   font-weight: bold;
