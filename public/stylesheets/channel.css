@@ -1,6 +1,13 @@
 .conference-description
 {
   border-bottom: 1px solid darkgray;
+  color: black;
+  font-size: 12px;
+}
+
+.conference-description a
+{
+  color: black;
 }
 
 .main-blocks
