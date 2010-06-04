@@ -24,6 +24,7 @@ body
   overflow-y:auto;
   background-image: url(/images/site-images/body-bg.gif);
   background-repeat: repeat-x;
+  background-color: #83baf1;
 }
 
 #layout-footer
@@ -83,7 +84,9 @@ body
   right: 100px;
   top: 100px;
   bottom: 100px;
-  background-color: WhiteSmoke;
+  background-color:#F9FBFE;
+  background-image: url("/images/site-images/popup-bg.gif");
+  background-repeat: repeat-x;
   z-index: 100;
   border: 10px solid gray;
   
