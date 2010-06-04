@@ -18,11 +18,10 @@ var User = Class.create({
   },
   
   contactHtmlAttributes: function() {
-    htmlAttributes = {
+    var htmlAttributes = {
         "id":       'contact-' + this.id,
         "class":    'contact padding5 lightblue-background ' + this.onlineStatus,
-        "style":    'border-bottom: 1px solid darkgray;',
-        "onclick":  ''
+        "style":    'border-bottom: 1px solid darkgray;'
       };
     
     return htmlAttributes;

@@ -56,6 +56,8 @@ var ResponseManager = Class.create({
     try{
       this.channel.contacts.updateList(json.contactUpdates);
     }catch(e){}
+    
+    contactRequestManager.notifyRequest(json.contactRequests);
   }
 });
 
@@ -79,8 +81,7 @@ var Contacts = Class.create({
         this.list[this.list.length] = contact;
       }
       
-      this.contactsContainer.insert({ bottom:contact.contactHtml() })
-      //function(){windowManager.openWindowByUserIds(this.channel.conferenceUrl, [contact.id, this.channel.user.id])}
+      this.contactsContainer.insert({ bottom:contact.contactHtml() });
       contact.contactDomElement().observe('click', this.click.bindAsEventListener(this, i));
     }
   },

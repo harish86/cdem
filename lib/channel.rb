@@ -37,7 +37,7 @@ module Channel
     
     def contact_statuses
       output = []
-      for contact in self.contacts.find_all_accepted.find(:all, :order=>"status asc, initiator asc, created_at asc", :include => [:friend])
+      for contact in self.contacts.accepted.find(:all, :order=>"status asc, initiator asc, created_at asc", :include => [:friend])
         output << {
             :id               =>  contact.friend.id,
             :name             =>  contact.friend.login,
@@ -49,11 +49,27 @@ module Channel
       return output
     end
     
+    def contact_requests
+      contacts = self.contacts.pending.recieved.find(:all, :order => "created_at asc", :include => [:friend])
+      output = []
+      for contact in contacts
+        output << {
+            :id               =>  contact.friend.id,
+            :name             =>  contact.friend.login,
+            :email            =>  contact.friend.email,
+            :message          =>  contact.message
+          }
+      end
+      
+      return output
+    end
+    
     def channel_response
       output = {}
       Rails.logger.silence do
         output[:conferenceUpdates] = self.conference_updates
         output[:contactUpdates] = self.contact_statuses
+        output[:contactRequests] = self.contact_requests
       end
       
       return output
@@ -82,6 +98,14 @@ module Channel
           when "set_title":
             conference_user = current_user.conference_users.find_by_conference_id(instruction[:params]["1"])
             conference_user.conference.update_attribute(:title, instruction[:params]["0"])
+            
+          when "accept_contact":
+            contact = current_user.contacts.pending.find_by_friend_id(instruction[:params]["0"])
+            contact.accept!
+            
+          when "reject_contact":
+            contact = current_user.contacts.find_by_friend_id(instruction[:params]["0"])
+            contact.reject!
             
           else
             errors << "error: Unrecognised command #{instruction[:command]}"

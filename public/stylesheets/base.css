@@ -9,6 +9,11 @@
     clear:both;
 }
 
+.cursor-pointer
+{
+  cursor: pointer;
+}
+
 button
 {
   cursor: pointer;

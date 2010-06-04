@@ -31,3 +31,14 @@
   font-weight: bold;
   padding: 5px;
 }
+
+/*----------------- Contact Requests ---------------*/
+.contact-request
+{
+  background-color:whitesmoke;
+  border-color:gray gray -moz-use-text-color;
+  border-style:solid solid none;
+  border-width:2px 2px 0;
+  margin-right: 3px;
+  max-width: 200px;
+}

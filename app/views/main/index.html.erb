@@ -59,6 +59,9 @@
 	var authenticityToken = <%= form_authenticity_token.inspect %>;
 	
 	var windowManager = new WindowManager();
+	var contactRequestManager = new ContactRequestManager({
+			container: 'layout-footer-left-contents'
+		});
 	
 	var user = new User({
 		    id: <%= current_user.id %>,
