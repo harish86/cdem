@@ -10,7 +10,9 @@
 				<% fields_for "users[]", user do |user_fields| %>
 					<tr>
 						<td class="align-left"><%= user_fields.check_box :selected, :onclick => "updateCheckAll({checkAll: 'check_all', selectBox: 'select_box'}); enableIfSelectedAny({enableElements: 'enable-disable-elements', selectBox: 'select_box'});", :class => "select_box" %></td>
-						<td class="align-left"><%= user.name %></td>
+						<td class="align-left">
+							<%= link_to_function user.name, "windowManager.openWindowByUserIds(#{new_conference_path(:user_id => user.id).inspect}, [#{user.id}, #{current_user.id}]);" %>
+						</td>
 					</tr>
 				<% end %>
 			<% end %>

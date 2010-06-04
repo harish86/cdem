@@ -23,6 +23,7 @@ button::-moz-focus-inner, input::-moz-focus-inner
 .disabled, button[disabled], input[disabled]
 {
   opacity:0.45;
+  text-shadow: 0 0;
 }
 
 button.menu-button, .page-button
