@@ -74,3 +74,20 @@ body
   max-width: 1300px;
   min-width: 900px;
 }
+
+/*------------------ About --------------*/
+#about-container
+{
+  position: absolute;
+  left: 100px;
+  right: 100px;
+  top: 100px;
+  bottom: 100px;
+  background-color: WhiteSmoke;
+  z-index: 100;
+  border: 10px solid gray;
+  
+  -moz-box-shadow: 7px 7px 7px gray;
+  -webkit-box-shadow: 7px 7px 7px gray;
+  zoom: 1;
+}

@@ -300,6 +300,12 @@ button.close-button:hover
 {
   -moz-border-radius: 10px;
 }
+
+.border-radius-top10
+{
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+}
 /*--------------------------------*/
 
 /* ---------Width--------- */
