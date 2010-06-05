@@ -110,14 +110,13 @@ body
 /* ----------------- Flash messages ------------- */
 #flash-message
 {
-  display: inline;
+  display: inline-block;
   position: relative;
-  top: 10px;
+  top: 5px;
 }
 
 #flash-message .notice, #flash-message .success, #flash-message .warning, #flash-message .error
 {
-  display: inline;
   border: 2px solid gray;
   background-color: whitesmoke;
   
