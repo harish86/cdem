@@ -65,14 +65,16 @@ var ConferenceHeader = Class.create({
     switch(event.keyCode)
     {
       case 13:
-        this.conference.title = this.titleInput.value;
-        this.updateTitle();
-        if(window.opener.channel)
-          window.opener.channel.instructionsManager.send(['set_title', this.titleInput.value, this.conference.id], true);
-          
+        if(this.conference.title != this.titleInput.value) {
+          var temp = this.conference.title;
+          this.conference.title = this.titleInput.value;
+          this.updateTitle();
+          this.conference.title = temp;
+          if(window.opener.channel)
+            window.opener.channel.instructionsManager.send(['set_title', this.titleInput.value, this.conference.id], false);
+        }
         event.stop();
         this.titleShowMode();
-        
       case 27:
         event.stop();
         this.titleShowMode();
@@ -213,8 +215,10 @@ var Conference = Class.create({
       
       if(updates.conferenceDetails)
       {
-        this.title = updates.conferenceDetails.title;
-        this.conferenceHeader.updateTitle();
+        if(this.title != updates.conferenceDetails.title) {
+          this.title = updates.conferenceDetails.title;
+          this.conferenceHeader.updateTitle();
+        }
       }
     }catch(e){alert(e);}
   }

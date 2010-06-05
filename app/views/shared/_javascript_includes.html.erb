@@ -22,4 +22,8 @@
   {
   	enabledElements[i].removeAttribute('disabled');
   }
+  
+  window.onload = function() {
+  	<%= yield :body_onload %>
+  }
 </script>

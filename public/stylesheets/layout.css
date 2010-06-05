@@ -13,6 +13,14 @@ body
   z-index:1;
 }
 
+#layout-head #layout-head-center-content
+{
+  text-align: center;
+  height: 0;
+  overflow: visible;
+  position: relative;
+}
+
 #layout-body
 {
   position: absolute;
@@ -89,8 +97,67 @@ body
   background-repeat: repeat-x;
   z-index: 100;
   border: 10px solid gray;
+  min-width: 200px;
+  min-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
   
   -moz-box-shadow: 7px 7px 7px gray;
   -webkit-box-shadow: 7px 7px 7px gray;
   zoom: 1;
+}
+
+/* ----------------- Flash messages ------------- */
+#flash-message
+{
+  display: inline;
+  position: relative;
+  top: 10px;
+}
+
+#flash-message .notice, #flash-message .success, #flash-message .warning, #flash-message .error
+{
+  display: inline;
+  border: 2px solid gray;
+  background-color: whitesmoke;
+  
+  -moz-box-shadow: 3px 3px 3px gray;
+  -webkit-box-shadow: 3px 3px 3px gray;
+  zoom: 1;
+}
+
+#flash-message .notice
+{
+  color:CornflowerBlue;
+  background-image:url("/images/site-images/message-icon/notice.png");
+  background-position:3px center;
+  background-repeat:no-repeat;
+  padding-left:25px;
+}
+
+#flash-message .success
+{
+  color:DarkSeaGreen;
+  background-image:url("/images/site-images/message-icon/success.png");
+  background-position:3px center;
+  background-repeat:no-repeat;
+  padding-left:25px;
+}
+
+#flash-message .warning
+{
+  color: GoldenRod;
+  background-image:url("/images/site-images/message-icon/warning.png");
+  background-position:3px center;
+  background-repeat:no-repeat;
+  padding-left:25px;
+}
+
+#flash-message .error
+{
+  color: Tomato;
+  background-image:url("/images/site-images/message-icon/error.png");
+  background-position:3px center;
+  background-repeat:no-repeat;
+  padding-left:25px;
 }

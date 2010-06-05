@@ -52,6 +52,8 @@ button.close-button
   height: 15px;
   text-align: center;
   -moz-box-shadow: 2px 2px 8px gray;
+  -webkit-box-shadow: 2px 2px 8px gray;
+  zoom: 1;
 }
 
 button.close-button:hover
