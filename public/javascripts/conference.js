@@ -46,7 +46,7 @@ var ConferenceHeader = Class.create({
   },
   
   updateTitle: function() {
-    this.titleContainer.innerHTML = this.conference.title.empty() ? "Click here to set title for this conference" : this.conference.title + " - [Click here to change]";
+    this.titleContainer.innerHTML = this.conference.title.empty() ? "Clicke here to set title for this conference" : this.conference.title + " - [Click here to change]";
     document.title = "Conference" + (this.conference.title.empty() ? "" : " - " + this.conference.title);
   },
   
