@@ -135,10 +135,15 @@ var MessageSender = Class.create({
           }
           event.stop();
         }
+        break;
         
       case 27:
         event.stop();
         this.form.reset();
+        break;
+        
+      default:
+        break;
     }
   }
 });

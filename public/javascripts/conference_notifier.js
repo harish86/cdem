@@ -22,10 +22,11 @@ var ConferenceNotifier = Class.create({
     this.container = options.container;
     
     this.insertHtml();
+    this.show();
   },
   
-  closeElement: function() {
-    return this.getElement().getElementsByClassName('conference-notifier-close')[0];
+  closeButton: function() {
+    return this.getElement().getElementsByClassName('close-button')[0];
   },
   
   headerElement: function() {
@@ -36,12 +37,25 @@ var ConferenceNotifier = Class.create({
     return this.getElement().getElementsByClassName('conference-notifier-body')[0];
   },
   
+  showButton: function() {
+    return this.getElement().getElementsByClassName('show-button')[0];
+  },
+  
   setEvents: function() {
-    if(this.closeElement())
-      this.closeElement().observe("click", this.hide.bindAsEventListener(this));
+    if(this.closeButton())
+      this.closeButton().observe("click", this.hide.bindAsEventListener(this));
       
-    if(this.bodyElement())
-      this.bodyElement().observe("click", this.click.bindAsEventListener(this));
+    if(this.showButton())
+      this.showButton().observe("click", this.click.bindAsEventListener(this));
+  },
+  
+  htmlAttributes: function() {
+    var attributes = {
+        "id":       'conference-notifier-' + this.id,
+        "class":    'conference-notifier border-radius-top5 font-size12 padding5 float-right'
+      };
+    
+    return attributes;
   },
   
   htmlId: function() {
@@ -60,8 +74,7 @@ var ConferenceNotifier = Class.create({
     
     for(var i = 0; i < this.messages.length; i++) {
       var message = this.messages[i];
-      
-      htmlString += "<div id=class='conference-notifier-message-" + message.id + "' class='conference-notifier-message'>";
+      htmlString += "<div id=conference-notifier-message-'" + message.id+ "' class='conference-notifier-message'>";
         htmlString += "<div class='conference-notifier-message-text'>";
           htmlString += textToHtml(message.text);
         htmlString += "</div>";
@@ -86,13 +99,16 @@ var ConferenceNotifier = Class.create({
   toHtml: function() {
     var htmlString = "";
     
-    htmlString += "<div id='" + this.htmlId() + "' class='conference-notifier'>";
+    htmlString += "<div " + objectToHtmlProperties(this.htmlAttributes()) + ">";
       htmlString += "<div class='conference-notifier-header'>";
-      htmlString += "<span class='conference-notifier-close'>(X)</span>";
-      htmlString += "There are unread messages from this chat. Click below to vew conversation.";
+      htmlString += "<button class='close-button float-right border-radius10'>X</button>";
+      htmlString += "<span class='underline'>New messages:</span>";
       htmlString += "</div>";
-      htmlString += "<div class='conference-notifier-body'>";
+      htmlString += "<div class='conference-notifier-body font-size10'>";
       htmlString += this.innerHtml();
+      htmlString += "</div>";
+      htmlString += "<div class='conference-notifier-footer'>";
+      htmlString += "<button class='menu-button show-button border-radius5'>Show</button>";
       htmlString += "</div>";
     htmlString += "</div>";
     

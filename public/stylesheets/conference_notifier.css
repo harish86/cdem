@@ -1,22 +1,15 @@
 .conference-notifier
 {
-  float: right;
-  border: 1px solid black;
-  border-bottom: 0px;
-  width: 150px;
-  margin-left: 5px;
-}
-
-.conference-notifier:hover
-{
-  border: 1px solid orange;
-  border-bottom: 0px;
+    background-color:whitesmoke;
+    border-color:gray gray -moz-use-text-color;
+    border-style:solid solid none;
+    border-width:2px 2px 0;
+    margin-left:3px;
+    min-width: 150px;
 }
 
 .conference-notifier .conference-notifier-header
 {
-  background-color: dodgerblue;
-  color: white;
   font-size: 11px;
   font-weight: bold;
 }
@@ -34,11 +27,9 @@
 
 .conference-notifier .conference-notifier-body
 {
-  background-color: aliceblue;
   font-size: 10px;
-  height: 100px;
+  height: 70px;
   padding: 3px;
-  cursor: pointer;
   overflow-y: auto;
 }
 
